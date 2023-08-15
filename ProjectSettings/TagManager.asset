@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Interactable
+  - Boundry
+  - MailBoxController
+  - Unlocked
+  - TargetNormal
+  - TargetRed
+  - TargetBlue
+  - MailBox
+  - Door
+  - DoorKeyColor
+  - Fire
+  - Normal
+  - Metal
+  - Ice
+  - SpeedBoost
+  - JumpBoost
+  - TimeAdd
+  - LaunchPad
+  - ScreenInfoText
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - EtraFPSUsableItem
+  - Water
+  - UI
+  - UI
+  - Player
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
