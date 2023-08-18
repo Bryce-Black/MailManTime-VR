@@ -225,15 +225,15 @@ public class FirstPersonController : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
         }
 
-        if(crosshair)
-        {
-            crosshairObject.sprite = crosshairImage;
-            crosshairObject.color = crosshairColor;
-        }
-        else
-        {
-            crosshairObject.gameObject.SetActive(false);
-        }
+        //if(crosshair)
+        //{
+        //    crosshairObject.sprite = crosshairImage;
+        //    crosshairObject.color = crosshairColor;
+        //}
+        //else
+        //{
+        //    crosshairObject.gameObject.SetActive(false);
+        //}
 
         #region Sprint Bar
 
@@ -566,7 +566,17 @@ public class FirstPersonController : MonoBehaviour
         {
             rightHandAnimator.SetFloat("Grip", 0);
         }
-        if(rightTriggerValue > 0)
+
+        float leftSqueezeValuetemp = leftSqueezePull.action.ReadValue<float>();
+        if (leftSqueezeValuetemp > 0)
+        {
+            leftHandAnimator.SetFloat("Grip", 1);
+        }
+        else
+        {
+            leftHandAnimator.SetFloat("Grip", 0);
+        }
+        if (rightTriggerValue > 0)
         {
             Shoot();
         }
@@ -612,13 +622,13 @@ public class FirstPersonController : MonoBehaviour
             if (Input.GetButtonDown("BButton"))
             {
                 Debug.Log("Zoomy bam boomy");
-                reticle.SetActive(true);
+                //reticle.SetActive(true);
                 playerCamera.fieldOfView = 40;
 
             }
             if(Input.GetButtonUp("BButton"))
             {
-                reticle.SetActive(false);
+                //reticle.SetActive(false);
                 playerCamera.fieldOfView = 60;
             }
         }
