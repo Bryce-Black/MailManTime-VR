@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.InputSystem;
 
 #if UNITY_EDITOR
     using UnityEditor;
@@ -175,6 +176,20 @@ public class FirstPersonController : MonoBehaviour
     public GameObject rayCastAnchorGameObject;
     public GameObject rayCastCameraAnchorGameObject;
     #endregion
+
+    public InputActionProperty rightTriggerPull;
+    public InputActionProperty rightSqueezePull;
+    public InputActionProperty rightJoystickAxis;
+    //public InputActionProperty rightAButton;
+    //public InputActionProperty rightBButton;
+
+    public InputActionProperty leftTriggerPull;
+    public InputActionProperty leftSqueezePull;
+    public InputActionProperty leftJoystickAxis;
+    //public InputActionProperty leftAButton;
+    //public InputActionProperty leftBButton;
+    public Animator leftHandAnimator;
+    public Animator rightHandAnimator;
 
 
     private void Awake()
@@ -537,91 +552,71 @@ public class FirstPersonController : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            SwitchProjectile();
-        }
-        float scrollInput = Input.mouseScrollDelta.y;
+        float rightTriggerValue = rightTriggerPull.action.ReadValue<float>();
+        Debug.Log("trig value: " + rightTriggerValue);
+        Vector2 turnValue = rightJoystickAxis.action.ReadValue<Vector2>();
+        Debug.Log("turnValue: " + turnValue);
 
-        if (scrollInput > 0)
+        float rightSqueezeValuetemp = rightSqueezePull.action.ReadValue<float>();
+        if(rightSqueezeValuetemp > 0)
         {
-            ScrollUpMethod();
+            rightHandAnimator.SetFloat("Grip", 1);
         }
-        else if (scrollInput < 0)
+        else
         {
-            ScrollDownMethod();
+            rightHandAnimator.SetFloat("Grip", 0);
         }
-        if (Input.GetButtonDown("Fire1"))
+        if(rightTriggerValue > 0)
         {
             Shoot();
         }
-        if(Input.GetKeyDown(KeyCode.Alpha1))
+        
+        if (turnValue.x == 0 || turnValue.y == 0)
         {
-            SelectItemBasedOnNumberPressed(1);
+            //do nothing
         }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
+        else
         {
-            SelectItemBasedOnNumberPressed(2);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            SelectItemBasedOnNumberPressed(3);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            if(!keyInHand)
-            {
-                SelectItemBasedOnNumberPressed(4);
-            }
-        }
-        #region Camera
-        // Control camera movement
-        if (cameraCanMove && !mbController.gameIsPaused)
-        {
-
-            yaw = transform.localEulerAngles.y + Input.GetAxis("Joystick X") * mouseSensitivity;
-
-
-            if (!invertCamera)
-            {
-                pitch -= Input.GetAxis("Joystick Y") * mouseSensitivity;
-            }
-            else
-            {
-                // Inverted Y
-                pitch += Input.GetAxis("Joystick Y") * mouseSensitivity;
-            }
-
-
-            //Mouse controls
-            //yaw = transform.localEulerAngles.y + Input.GetAxis("Mouse X") * mouseSensitivity;
-            //if (!invertCamera)
-            //{
-            //    pitch -= mouseSensitivity * Input.GetAxis("Mouse Y");
-            //}
-            //else
-            //{
-            //// Inverted Y
-            //    pitch += mouseSensitivity * Input.GetAxis("Mouse Y");
-            //}
-            ////Clamp pitch between lookAngle
-
-            pitch = Mathf.Clamp(pitch, -maxLookAngleLower, maxLookAngleHigher);
+            yaw = transform.localEulerAngles.y + turnValue.x * mouseSensitivity;
             transform.localEulerAngles = new Vector3(0, yaw, 0);
-            playerCamera.transform.localEulerAngles = new Vector3(pitch, 0, 0);
         }
+        if (Input.GetButtonDown("AButton"))
+        {
+            if (enableJump)
+            {
+                CheckGround();
+                if (isGrounded)
+                {
+                    Jump();
+                }
+
+            }
+        }
+        if (Input.GetButtonDown("BButton"))
+        {
+
+        }
+        if (Input.GetButtonDown("XButton"))
+        {
+
+        }
+        if (Input.GetButtonDown("YButton"))
+        {
+
+        }
+
 
         #region Camera Zoom
-        if(enableZoom)
+        if (enableZoom)
         {
-            if (Input.GetButtonDown("Fire2"))
+            if (Input.GetButtonDown("BButton"))
             {
                 Debug.Log("Zoomy bam boomy");
                 reticle.SetActive(true);
                 playerCamera.fieldOfView = 40;
 
             }
-            if(Input.GetButtonUp("Fire2"))
+            if(Input.GetButtonUp("BButton"))
             {
                 reticle.SetActive(false);
                 playerCamera.fieldOfView = 60;
@@ -631,7 +626,6 @@ public class FirstPersonController : MonoBehaviour
 
 
 
-        #endregion
         #endregion
 
         #region Sprint
@@ -688,15 +682,7 @@ public class FirstPersonController : MonoBehaviour
         #region Jump
 
         // Gets input and calls jump method
-        if (enableJump && Input.GetKeyDown(jumpKey))
-        {
-            CheckGround();
-            if(isGrounded)
-            {
-                Jump();
-            }
-            
-        }
+        
 
         #endregion
 
