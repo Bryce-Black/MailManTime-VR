@@ -10,9 +10,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.XR;
+
 
 #if UNITY_EDITOR
-    using UnityEditor;
+using UnityEditor;
     using System.Net;
 #endif
 
@@ -216,6 +218,7 @@ public class FirstPersonController : MonoBehaviour
 
     void Start()
     {
+
         Application.targetFrameRate = 120;
         Time.fixedDeltaTime = 0.00833f;
         mbController = GameObject.FindGameObjectWithTag("MailBoxController").GetComponent<MailBoxContoller>();
@@ -391,12 +394,13 @@ public class FirstPersonController : MonoBehaviour
     private void Update()
     {
         float rightTriggerValue = rightTriggerPull.action.ReadValue<float>();
-        Debug.Log("trig value: " + rightTriggerValue);
+        
         Vector2 turnValue = rightJoystickAxis.action.ReadValue<Vector2>();
         Debug.Log("turnValue: " + turnValue);
         if(rightTriggerValue > 0)
         {
-            rightHandAnimator.SetFloat("Pinch", 1);
+            Debug.Log("trig value: " + rightTriggerValue);
+            rightHandAnimator.SetFloat("Trigger", 1);
         }
 
         float rightSqueezeValuetemp = rightSqueezePull.action.ReadValue<float>();
@@ -676,7 +680,13 @@ public class FirstPersonController : MonoBehaviour
 
             if (targetVelocity.x == 0 && targetVelocity.z == 0)
             {
-                rb.velocity = new Vector3(0, 0, 0);
+                //CheckGround();
+                //if(isGrounded)
+                //{
+                //    rb.velocity = Vector3.zero;
+                //}
+                
+
                 //do nothing
             }
             else
@@ -798,24 +808,24 @@ public class FirstPersonController : MonoBehaviour
 
     //private void Crouch()
     //{
-        //// Stands player up to full height
-        //// Brings walkSpeed back up to original speed
-        //if (isCrouched)
-        //{
-        //    transform.localScale = new Vector3(originalScale.x, originalScale.y, originalScale.z);
-        //    walkSpeed /= speedReduction;
+    //// Stands player up to full height
+    //// Brings walkSpeed back up to original speed
+    //if (isCrouched)
+    //{
+    //    transform.localScale = new Vector3(originalScale.x, originalScale.y, originalScale.z);
+    //    walkSpeed /= speedReduction;
 
-        //    isCrouched = false;
-        //}
-        //// Crouches player down to set height
-        //// Reduces walkSpeed
-        //else
-        //{
-        //    transform.localScale = new Vector3(originalScale.x, crouchHeight, originalScale.z);
-        //    walkSpeed *= speedReduction;
+    //    isCrouched = false;
+    //}
+    //// Crouches player down to set height
+    //// Reduces walkSpeed
+    //else
+    //{
+    //    transform.localScale = new Vector3(originalScale.x, crouchHeight, originalScale.z);
+    //    walkSpeed *= speedReduction;
 
-        //    isCrouched = true;
-        //}
+    //    isCrouched = true;
+    //}
     //}
 
     //    private void HeadBob()

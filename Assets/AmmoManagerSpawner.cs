@@ -32,11 +32,21 @@ public class AmmoManagerSpawner : MonoBehaviour
             StartCoroutine("DelayedSpawn");
 
         }
-        //if(!_bow.isSelected && _)
+        if (!_bow.isSelected && _currentArrow != null)
+        {
+            Destroy(_currentArrow);
+            NotchEmpty(1f);
+        }
     }
     private void NotchEmpty(float value)
     {
         _arrowNotched = false;
         _currentArrow = null;
+    }
+
+    IEnumerator DelayedSpawn()
+    {
+        yield return new WaitForSeconds(1f);
+        _currentArrow = Instantiate(arrow, notch.transform);
     }
 }
