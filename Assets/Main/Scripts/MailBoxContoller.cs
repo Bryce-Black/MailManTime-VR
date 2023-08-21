@@ -39,6 +39,9 @@ public class MailBoxContoller : MonoBehaviour
     public bool gameIsPaused = false;
     public GameObject reticle;
     public AudioSource music;
+
+    public GameObject keysUI;
+    public GameObject mailUI;
     private void Start()
     {
         firstPersonController = GameObject.FindGameObjectWithTag("Player").GetComponent<FirstPersonController>();
@@ -285,6 +288,8 @@ public class MailBoxContoller : MonoBehaviour
             PlayerScoreText.text = "SCORE: " + PlayerScore.ToString() + "/100";
             DecreaseMailSpawnTime();
             StartTimerCountDownCoroutine();
+            keysUI.SetActive(true);
+            mailUI.SetActive(false);
         }
        
     }
@@ -333,6 +338,8 @@ public class MailBoxContoller : MonoBehaviour
         NewMailBoxTarget();
         PlayerScoreText.text = "SCORE: " + PlayerScore.ToString() + "/100";
         LoseOneHealthPoint();
+        keysUI.SetActive(true);
+        mailUI.SetActive(false);
     }
     private void LoseOneHealthPoint()
     {
@@ -350,7 +357,9 @@ public class MailBoxContoller : MonoBehaviour
     }
     public void KeyHasUnlockedBox()
     {
-        if(timerInitialTime > 0)
+        keysUI.SetActive(false);
+        mailUI.SetActive(true);
+        if (timerInitialTime > 0)
         {
             timerInitialTime += 5f;
         }
