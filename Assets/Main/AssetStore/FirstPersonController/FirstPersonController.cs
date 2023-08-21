@@ -219,24 +219,7 @@ public class FirstPersonController : MonoBehaviour
         Application.targetFrameRate = 120;
         Time.fixedDeltaTime = 0.00833f;
         mbController = GameObject.FindGameObjectWithTag("MailBoxController").GetComponent<MailBoxContoller>();
-        
-        if (lockCursor)
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-        }
-
-        //if(crosshair)
-        //{
-        //    crosshairObject.sprite = crosshairImage;
-        //    crosshairObject.color = crosshairColor;
-        //}
-        //else
-        //{
-        //    crosshairObject.gameObject.SetActive(false);
-        //}
-
         #region Sprint Bar
-
         sprintBarCG = GetComponentInChildren<CanvasGroup>();
 
         if(useSprintBar)
