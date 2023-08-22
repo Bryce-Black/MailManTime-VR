@@ -402,6 +402,10 @@ public class FirstPersonController : MonoBehaviour
             Debug.Log("trig value: " + rightTriggerValue);
             rightHandAnimator.SetFloat("Trigger", 1);
         }
+        else
+        {
+            rightHandAnimator.SetFloat("Trigger", 0);
+        }
 
         float rightSqueezeValuetemp = rightSqueezePull.action.ReadValue<float>();
         if(rightSqueezeValuetemp > 0)
@@ -670,22 +674,25 @@ public class FirstPersonController : MonoBehaviour
         //    }
 
         //}
+
+        //GRAVITY
+        rb.AddForce(Vector3.down * gravityScale);
         #region Movement
         if (playerCanMove)
         {
             // Calculate how fast we should be moving
             Vector3 targetVelocity = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-            //Debug.Log("target velocity?:" + targetVelocity);
-            rb.AddForce(Vector3.down * gravityScale);
-
+            Debug.Log("target velocity?:" + targetVelocity);
             if (targetVelocity.x == 0 && targetVelocity.z == 0)
             {
-                //CheckGround();
-                //if(isGrounded)
-                //{
-                //    rb.velocity = Vector3.zero;
-                //}
-                
+
+                CheckGround();
+                if (isGrounded)
+                {
+                    rb.velocity = Vector3.zero;
+                    rb.Sleep();
+                }
+
 
                 //do nothing
             }
