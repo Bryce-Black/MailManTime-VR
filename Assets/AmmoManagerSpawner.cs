@@ -49,4 +49,9 @@ public class AmmoManagerSpawner : MonoBehaviour
         yield return new WaitForSeconds(1f);
         _currentArrow = Instantiate(arrow, notch.transform);
     }
+
+    public void SpawnSpecificItemInNotch(string itemName)
+    {
+        _currentArrow = Instantiate(Resources.Load<GameObject>(itemName), notch.transform);
+    }
 }
