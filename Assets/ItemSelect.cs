@@ -8,7 +8,7 @@ public class ItemSelect : MonoBehaviour
     private AmmoManagerSpawner ammoManagerSpawner;
     private void Start()
     {
-        Debug.Log("Grab *item* name is " + this.gameObject.name);
+        //Debug.Log("Grab *item* name is " + this.gameObject.name);
         ammoManagerSpawner = GameObject.FindAnyObjectByType<AmmoManagerSpawner>();
     }
     public void GrabKey()

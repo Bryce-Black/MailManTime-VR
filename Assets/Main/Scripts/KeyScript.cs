@@ -9,11 +9,12 @@ public class KeyScript : MonoBehaviour
     FirstPersonController firstPersonController;
     private IEnumerator delayDestroy;
     private bool failedKey = false;
+
     private void Start()
     {
         mailBoxController = GameObject.FindGameObjectWithTag("MailBoxController").GetComponent<MailBoxContoller>();
         firstPersonController = GameObject.FindGameObjectWithTag("Player").GetComponent<FirstPersonController>();
-        delayDestroy = DelayDestroo(1f);
+        delayDestroy = DelayDestroo(5f);
         StartCoroutine(delayDestroy);
 
     }
@@ -50,9 +51,13 @@ public class KeyScript : MonoBehaviour
         }
         else
         {
-            //failedKey = true;
-            //mailBoxController.KeyHasFailed();
-            //Destroy(this.gameObject);
+            //if (other.gameObject.tag == "Boundry")
+            //{
+            //    failedKey = true;
+            //    //mailBoxController.MailHasFailed();
+            //    firstPersonController.ScreenInfoActivate("Miss!");
+            //    Destroy(this.gameObject);
+            //}
         }
     }
 

@@ -29,7 +29,7 @@ public class AmmoManagerSpawner : MonoBehaviour
         if(_bow.isSelected && _arrowNotched == false)
         {
             _arrowNotched = true;
-            StartCoroutine("DelayedSpawn");
+            //StartCoroutine("DelayedSpawn");
 
         }
         if (!_bow.isSelected && _currentArrow != null)
@@ -52,6 +52,7 @@ public class AmmoManagerSpawner : MonoBehaviour
 
     public void SpawnSpecificItemInNotch(string itemName)
     {
+        Debug.Log("attempting to instantiate on notch: " + itemName);
         _currentArrow = Instantiate(Resources.Load<GameObject>(itemName), notch.transform);
     }
 }

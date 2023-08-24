@@ -60,8 +60,11 @@ public class MailScript : MonoBehaviour
         }
         else
         {
-            //mailBoxController.MailHasFailed();
-            //Destroy(this.gameObject);
+            if (other.gameObject.tag == "Boundry")
+            {
+                mailBoxController.MailHasFailed();
+                Destroy(this.gameObject);
+            }
         }
     }
 
