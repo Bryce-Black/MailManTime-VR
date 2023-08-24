@@ -8,7 +8,7 @@ public class AmmoManagerSpawner : MonoBehaviour
     public GameObject notch;
 
     private XRGrabInteractable _bow;
-    private bool _arrowNotched = false;
+    public bool _arrowNotched = false;
     private GameObject _currentArrow = null;
 
     // Start is called before the first frame update

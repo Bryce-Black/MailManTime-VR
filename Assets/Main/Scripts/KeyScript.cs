@@ -16,7 +16,6 @@ public class KeyScript : MonoBehaviour
         firstPersonController = GameObject.FindGameObjectWithTag("Player").GetComponent<FirstPersonController>();
         delayDestroy = DelayDestroo(5f);
         StartCoroutine(delayDestroy);
-
     }
 
     private IEnumerator DelayDestroo(float waitTime)
@@ -46,6 +45,10 @@ public class KeyScript : MonoBehaviour
     {
         if (other.gameObject.tag == this.gameObject.tag && !failedKey)
         {
+            mailBoxController = GameObject.FindGameObjectWithTag("MailBoxController").GetComponent<MailBoxContoller>();
+
+            Debug.Log("mbconttoller is: " + mailBoxController);
+            Debug.Log("key entered trigger of: " + other.gameObject.name);
             mailBoxController.KeyHasUnlockedBox();
             Destroy(this.gameObject);
         }

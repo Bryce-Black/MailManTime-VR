@@ -24,6 +24,8 @@ public class Arrow : MonoBehaviour
         PullInteraction.PullActionReleased += Release;
 
         Stop();
+
+        Debug.Log(this.gameObject.name + " spawned");
     }
 
     private void OnDestroy()

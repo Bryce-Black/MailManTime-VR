@@ -94,7 +94,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c1c00a2b1e4d294f95a4d40022be5b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mailScript: {fileID: 11400000, guid: 7900f8b58a6f6854395079f121e8e4c5, type: 2}
+  mailScript: {fileID: 11400000, guid: a6d70981b39f6d146a0b7c6637e1926a, type: 2}
 --- !u!1 &2763434376215091712
 GameObject:
   m_ObjectHideFlags: 0

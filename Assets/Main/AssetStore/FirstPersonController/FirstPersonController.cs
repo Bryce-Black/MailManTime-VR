@@ -396,10 +396,10 @@ public class FirstPersonController : MonoBehaviour
         float rightTriggerValue = rightTriggerPull.action.ReadValue<float>();
         
         Vector2 turnValue = rightJoystickAxis.action.ReadValue<Vector2>();
-        Debug.Log("turnValue: " + turnValue);
+        //Debug.Log("turnValue: " + turnValue);
         if(rightTriggerValue > 0)
         {
-            Debug.Log("trig value: " + rightTriggerValue);
+            //Debug.Log("trig value: " + rightTriggerValue);
             rightHandAnimator.SetFloat("Trigger", 1);
         }
         else
@@ -426,8 +426,8 @@ public class FirstPersonController : MonoBehaviour
         {
             leftHandAnimator.SetFloat("Grip", 0);
         }
-        
-        
+
+
         if (turnValue.x == 0 || turnValue.y == 0)
         {
             //do nothing
@@ -682,7 +682,7 @@ public class FirstPersonController : MonoBehaviour
         {
             // Calculate how fast we should be moving
             Vector3 targetVelocity = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-            Debug.Log("target velocity?:" + targetVelocity);
+            //Debug.Log("target velocity?:" + targetVelocity);
             if (targetVelocity.x == 0 && targetVelocity.z == 0)
             {
 
@@ -793,7 +793,7 @@ public class FirstPersonController : MonoBehaviour
         {
             isGrounded = false;
         }
-        Debug.Log("Is grounded?: " + isGrounded);
+        //Debug.Log("Is grounded?: " + isGrounded);
     }
 
     private void Jump()
@@ -805,7 +805,7 @@ public class FirstPersonController : MonoBehaviour
             rb.AddForce(0f, jumpPower, 0f, ForceMode.Impulse);
             isGrounded = false;
         }
-        Debug.Log("jumped");
+        //Debug.Log("jumped");
         // When crouched and using toggle system, will uncrouch for a jump
         //if (isCrouched && !holdToCrouch)
         //{

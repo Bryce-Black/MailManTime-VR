@@ -23,6 +23,7 @@ TagManager:
   - TimeAdd
   - LaunchPad
   - ScreenInfoText
+  - HoverIndicator
   layers:
   - Default
   - TransparentFX
