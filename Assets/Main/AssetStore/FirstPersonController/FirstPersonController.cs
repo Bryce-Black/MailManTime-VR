@@ -82,6 +82,8 @@ public class FirstPersonController : MonoBehaviour
     public float zoomFOV = 30f;
     public float zoomStepTime = 5f;
 
+
+    public KeyCode pauseButton = KeyCode.Joystick1Button7;
     // Internal Variables
     private bool isZoomed = false;
 
@@ -130,7 +132,7 @@ public class FirstPersonController : MonoBehaviour
     #region Jump
 
     public bool enableJump = true;
-    public KeyCode jumpKey = KeyCode.Space;
+    public KeyCode jumpKey = KeyCode.Joystick1Button0;
     public float jumpPower = 5f;
 
     // Internal Variables
@@ -192,7 +194,7 @@ public class FirstPersonController : MonoBehaviour
     //public InputActionProperty leftBButton;
     public Animator leftHandAnimator;
     public Animator rightHandAnimator;
-
+    public UIManager uImanager;
 
     private void Awake()
     {
@@ -394,7 +396,7 @@ public class FirstPersonController : MonoBehaviour
     private void Update()
     {
         float rightTriggerValue = rightTriggerPull.action.ReadValue<float>();
-        
+        float leftTriggerValue = leftTriggerPull.action.ReadValue<float>();
         Vector2 turnValue = rightJoystickAxis.action.ReadValue<Vector2>();
         //Debug.Log("turnValue: " + turnValue);
         if(rightTriggerValue > 0)
@@ -437,7 +439,7 @@ public class FirstPersonController : MonoBehaviour
             yaw = transform.localEulerAngles.y + turnValue.x * mouseSensitivity;
             transform.localEulerAngles = new Vector3(0, yaw, 0);
         }
-        if (Input.GetButtonDown("AButton"))
+        if (Input.GetKeyDown(jumpKey))
         {
             if (enableJump)
             {
@@ -463,23 +465,34 @@ public class FirstPersonController : MonoBehaviour
 
         }
 
+        if(Input.GetKeyUp(pauseButton))
+        {
+            Debug.Log("pauseButtonPressed");
+            uImanager.ToggleOptionsMenu();
+        }
+
 
         #region Camera Zoom
-        if (enableZoom)
-        {
-            if (Input.GetButtonDown("BButton"))
-            {
-                Debug.Log("Zoomy bam boomy");
-                //reticle.SetActive(true);
-                playerCamera.fieldOfView = 40;
+        //if (leftTriggerValue > 0)
+        //{
+        //    Debug.Log("Zoomy bam boomy");
+        //    //reticle.SetActive(true);
+        //    playerCamera.fieldOfView = 40;
+        //    //if (Input.GetKey(zoomKey))
+        //    //{
+                
 
-            }
-            if(Input.GetButtonUp("BButton"))
-            {
-                //reticle.SetActive(false);
-                playerCamera.fieldOfView = 60;
-            }
-        }
+        //    //}
+        //    //else
+        //    //{
+        //    //    //reticle.SetActive(false);
+        //    //}
+        //}
+        //else
+        //{
+        //    playerCamera.fieldOfView = 60;
+
+        //}
 
 
 
@@ -687,11 +700,11 @@ public class FirstPersonController : MonoBehaviour
             {
 
                 CheckGround();
-                if (isGrounded)
-                {
-                    rb.velocity = Vector3.zero;
-                    rb.Sleep();
-                }
+                //if (isGrounded)
+                //{
+                //    rb.velocity = Vector3.zero;
+                //    rb.Sleep();
+                //}
 
 
                 //do nothing
@@ -761,6 +774,8 @@ public class FirstPersonController : MonoBehaviour
                     velocityChange.y = 0;
 
                     rb.AddForce(velocityChange, ForceMode.VelocityChange);
+
+                    rb.AddForce(velocityChange, ForceMode.VelocityChange);
                 }
             }
             // Checks if player is walking and isGrounded
@@ -799,12 +814,9 @@ public class FirstPersonController : MonoBehaviour
     private void Jump()
     {
         // Adds force to the player rigidbody to jump
-        
-        if (isGrounded)
-        {
-            rb.AddForce(0f, jumpPower, 0f, ForceMode.Impulse);
-            isGrounded = false;
-        }
+
+        rb.AddForce(0f, jumpPower, 0f, ForceMode.Impulse);
+        isGrounded = false;
         //Debug.Log("jumped");
         // When crouched and using toggle system, will uncrouch for a jump
         //if (isCrouched && !holdToCrouch)

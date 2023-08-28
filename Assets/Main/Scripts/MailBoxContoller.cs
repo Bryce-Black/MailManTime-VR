@@ -42,6 +42,7 @@ public class MailBoxContoller : MonoBehaviour
 
     public GameObject keysUI;
     public GameObject mailUI;
+    public UIManager uIManager;
     private void Start()
     {
         firstPersonController = GameObject.FindGameObjectWithTag("Player").GetComponent<FirstPersonController>();
@@ -56,40 +57,8 @@ public class MailBoxContoller : MonoBehaviour
         NewMailBoxTarget();
         StartTimerCountDownCoroutine();
     }
-    private void Update()
-    {
-        if(!gameOver)
-        {
-            totalTime += Time.deltaTime;
 
-        }
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            ToggleOptionsMenu();
-        }
-
-    }
-    private void ToggleOptionsMenu()
-    {
-        if(optionsPanel.activeSelf == true)
-        {
-            optionsPanel.SetActive(false);
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-            Time.timeScale = 1f;
-            gameIsPaused = false;
-            reticle.SetActive(true);
-        }
-        else
-        {
-            Time.timeScale = 0f;
-            optionsPanel.SetActive(true);
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-            gameIsPaused = true;
-            reticle.SetActive(false);
-        }
-    }
+    
     public void TimeResetPowerUp()
     {
         timerInitialTime += 5f;
@@ -280,7 +249,7 @@ public class MailBoxContoller : MonoBehaviour
             
             if(PlayerScore >= 100)
             {
-                YouWin();
+                uIManager.YouWin();
             }
             Debug.Log("Mail Delivered! Get Points: " + points);
             Debug.Log("Total Points: " + PlayerScore);
@@ -293,40 +262,7 @@ public class MailBoxContoller : MonoBehaviour
         }
        
     }
-    private void YouWin()
-    {
-        firstPersonController.enabled = false;
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
-        gameOver = true;
-        youWinPanel.SetActive(true);
-        float roundedTime = (float)Math.Round(totalTime, 2);
-        totalTime = roundedTime;
-        totalTimeText.text = totalTime.ToString();
 
-    }
-    public void ToggleMusic()
-    {
-        if(music.enabled == true)
-        {
-            music.enabled = false;
-        }
-        else
-        {
-            music.enabled = true;
-        }
-    }
-    public void RestartGame()
-    {
-        Time.timeScale = 1f;
-        SceneManager.LoadScene("MailManTime");
-    }
-    public void LoadMainMenu()
-    {
-        Time.timeScale = 1f;
-        SceneManager.LoadScene("MainMenu");
-
-    }
 
     public void MailHasFailed()
     {
