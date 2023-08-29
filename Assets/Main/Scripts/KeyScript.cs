@@ -9,11 +9,9 @@ public class KeyScript : MonoBehaviour
     FirstPersonController firstPersonController;
     private IEnumerator delayDestroy;
     private bool failedKey = false;
-    private AmmoManagerSpawner ammoManagerSpawner;
 
     private void Start()
     {
-        ammoManagerSpawner = GameObject.FindGameObjectWithTag("Bow").GetComponent<AmmoManagerSpawner>();
         mailBoxController = GameObject.FindGameObjectWithTag("MailBoxController").GetComponent<MailBoxContoller>();
         firstPersonController = GameObject.FindGameObjectWithTag("Player").GetComponent<FirstPersonController>();
         delayDestroy = DelayDestroo(5f);
@@ -23,13 +21,18 @@ public class KeyScript : MonoBehaviour
     private IEnumerator DelayDestroo(float waitTime)
     {
         yield return new WaitForSeconds(waitTime);
-        MissedShot();
+        //mailBoxController.MailHasFailed();
+        firstPersonController.ScreenInfoActivate("Miss!");
+        Destroy(this.gameObject);
     }
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.tag == "Boundry")
         {
-            MissedShot();
+            failedKey = true;
+            //mailBoxController.MailHasFailed();
+            firstPersonController.ScreenInfoActivate("Miss!");
+            Destroy(this.gameObject);
         }
         if (collision.gameObject.tag == this.gameObject.tag && !failedKey)
         {
@@ -59,15 +62,6 @@ public class KeyScript : MonoBehaviour
             //    Destroy(this.gameObject);
             //}
         }
-    }
-
-    private void MissedShot()
-    {
-        failedKey = true;
-        firstPersonController.ScreenInfoActivate("Miss!");
-        ammoManagerSpawner.SpawnSpecificItemInNotch(this.gameObject.name);
-        Debug.Log("Arrow destroyed name is: " + this.gameObject.name);
-        Destroy(this.gameObject);
     }
 
 }

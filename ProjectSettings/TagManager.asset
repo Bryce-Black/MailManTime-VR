@@ -24,7 +24,6 @@ TagManager:
   - LaunchPad
   - ScreenInfoText
   - HoverIndicator
-  - Bow
   layers:
   - Default
   - TransparentFX

@@ -10,8 +10,6 @@ public class AmmoManagerSpawner : MonoBehaviour
     private XRGrabInteractable _bow;
     public bool _arrowNotched = false;
     private GameObject _currentArrow = null;
-    public Transform _holsterPosition;
-    public GameObject _bowGameObject;
 
     // Start is called before the first frame update
     void Start()
@@ -56,13 +54,5 @@ public class AmmoManagerSpawner : MonoBehaviour
     {
         Debug.Log("attempting to instantiate on notch: " + itemName);
         _currentArrow = Instantiate(Resources.Load<GameObject>(itemName), notch.transform);
-    }
-
-    public void AttachBowToHip()
-    {
-        Debug.Log("bow has been let go of, to the holster!");
-        _bowGameObject.transform.SetParent(_holsterPosition);
-        _bowGameObject.transform.position = _holsterPosition.transform.position;
-        _bowGameObject.transform.rotation = _holsterPosition.transform.localRotation;
     }
 }

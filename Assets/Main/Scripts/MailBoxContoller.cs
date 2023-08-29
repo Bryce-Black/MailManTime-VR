@@ -226,7 +226,10 @@ public class MailBoxContoller : MonoBehaviour
         randomNumber = UnityEngine.Random.Range(0, numberOfMailBoxes);
     }
 
- 
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
     public void MailHasBeenDelivered(int points)
     {
         if(mailBoxUnlocked)
