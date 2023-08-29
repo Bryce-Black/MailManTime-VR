@@ -13,7 +13,7 @@ public class PullInteraction : XRBaseInteractable
 
     private LineRenderer _lineRenderer;
     private IXRSelectInteractor pullingInteractor = null;
-
+    public AmmoManagerSpawner ammoManagerSpawner;
     private AudioSource _soundEffect;
     protected override void Awake()
     {
@@ -36,7 +36,11 @@ public class PullInteraction : XRBaseInteractable
         UpdateString();
         if(_soundEffect != null)
         {
-            _soundEffect.Play();
+            if(ammoManagerSpawner._arrowNotched)
+            {
+                _soundEffect.Play();
+            }
+
         }
         
     }
@@ -48,10 +52,14 @@ public class PullInteraction : XRBaseInteractable
         {
             if(isSelected)
             {
-                Vector3 pullPosition = pullingInteractor.transform.position;
-                PullAmount = CalculatePull(pullPosition);
-                UpdateString();
+                if(pullingInteractor != null)
+                {
+                    Vector3 pullPosition = pullingInteractor.transform.position;
+                    PullAmount = CalculatePull(pullPosition);
+                    UpdateString();
+                }
             }
+               
         }
     }
 

@@ -9,6 +9,7 @@ public class KeyScript : MonoBehaviour
     FirstPersonController firstPersonController;
     private IEnumerator delayDestroy;
     private bool failedKey = false;
+    public AmmoManagerSpawner ammoManagerSpawner;
 
     private void Start()
     {

@@ -11,6 +11,9 @@ public class AmmoManagerSpawner : MonoBehaviour
     public bool _arrowNotched = false;
     private GameObject _currentArrow = null;
 
+    public GameObject holster;
+    public GameObject _BowAndArrowGameObject;
+    private bool bowInHand = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -37,6 +40,11 @@ public class AmmoManagerSpawner : MonoBehaviour
             Destroy(_currentArrow);
             NotchEmpty(1f);
         }
+        if(!bowInHand)
+        {
+            _BowAndArrowGameObject.gameObject.transform.SetParent(holster.transform);
+            _BowAndArrowGameObject.transform.localPosition = new Vector3(0, 0, 0);
+        }
     }
     private void NotchEmpty(float value)
     {
@@ -55,4 +63,19 @@ public class AmmoManagerSpawner : MonoBehaviour
         Debug.Log("attempting to instantiate on notch: " + itemName);
         _currentArrow = Instantiate(Resources.Load<GameObject>(itemName), notch.transform);
     }
+
+    public void ReholsterBow()
+    {
+        //_BowAndArrowGameObject.gameObject.transform.position = holster.gameObject.transform.position;
+        
+        bowInHand = false;
+
+    }
+
+    public void GrabBow()
+    {
+        _BowAndArrowGameObject.transform.SetParent(null);
+        bowInHand = true;
+    }
+
 }

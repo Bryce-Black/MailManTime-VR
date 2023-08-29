@@ -775,7 +775,6 @@ public class FirstPersonController : MonoBehaviour
 
                     rb.AddForce(velocityChange, ForceMode.VelocityChange);
 
-                    rb.AddForce(velocityChange, ForceMode.VelocityChange);
                 }
             }
             // Checks if player is walking and isGrounded
