@@ -29,6 +29,27 @@ public class ItemSelect : MonoBehaviour
             Debug.Log("Grab key name is " + this.gameObject.name);
             _arrowNotched = true;
         }
+        else
+        {
+            if (ammoManagerSpawner._currentArrow.gameObject != null)
+            {
+                if (ammoManagerSpawner._currentArrow.gameObject.name == this.gameObject.name)
+                {
+                    //do nothing
+                }
+                else
+                {
+                    fpController.UpdateKeyName(this.gameObject.name);
+                    ammoManagerSpawner.ReplaceCurrentItemInNotch(this.gameObject.name);
+                }
+            }
+            else
+            {
+                _arrowNotched = false;
+            }
+
+            
+        }
     }
 
     public void GrabMail()
@@ -44,6 +65,28 @@ public class ItemSelect : MonoBehaviour
             Debug.Log("Grab mail name is " + this.gameObject.name);
             _arrowNotched = true;
         }
+        else
+        {
+            if (ammoManagerSpawner._currentArrow.gameObject != null)
+            {
+                if (ammoManagerSpawner._currentArrow.gameObject.name == this.gameObject.name)
+                {
+                    //do nothing
+                }
+                else
+                {
+                    fpController.UpdateMailName(this.gameObject.name);
+                    ammoManagerSpawner.ReplaceCurrentItemInNotch(this.gameObject.name);
+                }
+            }
+            else
+            {
+                _arrowNotched = false;
+            }
+
+
+        }
+
         
     }
     public void ChangeHoverIndicatorPosition()
