@@ -196,6 +196,13 @@ public class FirstPersonController : MonoBehaviour
     public Animator rightHandAnimator;
     public UIManager uImanager;
 
+
+    public float MoveSmoothTime;
+    
+    private Vector3 CurrentMoveVelocity;
+    private Vector3 MoveDampVelocity;
+    private Vector3 CurrentForceVeloctiy;
+    private CharacterController characterController;
     private void Awake()
     {
         selectedKeyPositionV3 = keyUIGameObjects[0].transform.position;
@@ -220,7 +227,7 @@ public class FirstPersonController : MonoBehaviour
 
     void Start()
     {
-
+        characterController = GetComponent<CharacterController>();
         Application.targetFrameRate = 120;
         Time.fixedDeltaTime = 0.00833f;
         mbController = GameObject.FindGameObjectWithTag("MailBoxController").GetComponent<MailBoxContoller>();
@@ -480,7 +487,7 @@ public class FirstPersonController : MonoBehaviour
         //    playerCamera.fieldOfView = 40;
         //    //if (Input.GetKey(zoomKey))
         //    //{
-                
+
 
         //    //}
         //    //else
@@ -494,7 +501,32 @@ public class FirstPersonController : MonoBehaviour
 
         //}
 
+        isSprinting = false;
 
+        Vector3 PlayerInput = new Vector3
+        {
+            x = Input.GetAxisRaw("Horizontal"),
+            y = 0f,
+            z = Input.GetAxisRaw("Vertical")
+        };
+
+        if (PlayerInput.magnitude > 1f)
+        {
+            PlayerInput.Normalize();
+        }
+
+        Vector3 MoveVector = transform.TransformDirection(PlayerInput);
+
+        float CurrentSpeed = Input.GetKey(sprintKey) ? sprintSpeed : walkSpeed;
+
+        CurrentMoveVelocity = Vector3.SmoothDamp(
+            CurrentMoveVelocity,
+            MoveVector * CurrentSpeed,
+            ref MoveDampVelocity,
+            MoveSmoothTime
+        );
+
+        characterController.Move(CurrentMoveVelocity * Time.deltaTime);
 
 
         #endregion
@@ -725,6 +757,7 @@ public class FirstPersonController : MonoBehaviour
                 }
 
 
+
                 // All movement calculations shile sprint is active
                 if (enableSprint && Input.GetKey(sprintKey) && sprintRemaining > 0f && !isSprintCooldown)
                 {
@@ -736,6 +769,7 @@ public class FirstPersonController : MonoBehaviour
                     velocityChange.x = Mathf.Clamp(velocityChange.x, -maxVelocityChange, maxVelocityChange);
                     velocityChange.z = Mathf.Clamp(velocityChange.z, -maxVelocityChange, maxVelocityChange);
                     velocityChange.y = 0;
+
                     // Player is only moving when velocity change != 0
                     // Makes sure fov change only happens during movement
                     if (velocityChange.x != 0 || velocityChange.z != 0)
@@ -758,24 +792,61 @@ public class FirstPersonController : MonoBehaviour
                 // All movement calculations while walking
                 else
                 {
-                    isSprinting = false;
+                    //isSprinting = false;
 
-                    if (hideBarWhenFull && sprintRemaining == sprintDuration)
-                    {
-                        //sprintBarCG.alpha -= 3 * Time.deltaTime;
-                    }
+                    //Vector3 PlayerInput = new Vector3
+                    //{
+                    //    x = Input.GetAxisRaw("Horizontal"),
+                    //    y = 0f,
+                    //    z = Input.GetAxisRaw("Vertical")
+                    //};
 
-                    targetVelocity = transform.TransformDirection(targetVelocity) * walkSpeed;
-                    //Apply a force that attempts to reach our target velocity
-                    Vector3 velocity = rb.velocity;
-                    Vector3 velocityChange = (targetVelocity - velocity);
-                    velocityChange.x = Mathf.Clamp(velocityChange.x, -maxVelocityChange, maxVelocityChange);
-                    velocityChange.z = Mathf.Clamp(velocityChange.z, -maxVelocityChange, maxVelocityChange);
-                    velocityChange.y = 0;
+                    //if (PlayerInput.magnitude > 1f)
+                    //{
+                    //    PlayerInput.Normalize();
+                    //}
 
-                    rb.AddForce(velocityChange, ForceMode.VelocityChange);
+                    //Vector3 MoveVector = transform.TransformDirection(PlayerInput);
 
-                    rb.AddForce(velocityChange, ForceMode.VelocityChange);
+                    //float CurrentSpeed = Input.GetKey(sprintKey) ? sprintSpeed : walkSpeed;
+
+                    //CurrentMoveVelocity = Vector3.SmoothDamp(
+                    //    CurrentMoveVelocity,
+                    //    MoveVector * CurrentSpeed,
+                    //    ref MoveDampVelocity, 
+                    //    MoveSmoothTime
+                    //);
+
+                    //characterController.Move(CurrentMoveVelocity * Time.deltaTime);
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    ////if (hideBarWhenFull && sprintRemaining == sprintDuration)
+                    ////{
+                    ////    //sprintBarCG.alpha -= 3 * Time.deltaTime;
+                    ////}
+                    ////currentInputVector = Vector3.SmoothDamp(currentInputVector, targetVelocity, ref smoothInputVelocity, smoothInputSpeed);
+
+                    //targetVelocity = transform.TransformDirection(targetVelocity);
+                    ////Apply a force that attempts to reach our target velocity
+                    //Vector3 velocity = rb.velocity;
+                    //Vector3 velocityChange = (targetVelocity - velocity);
+                    //velocityChange.x = Mathf.Clamp(velocityChange.x, -maxVelocityChange, maxVelocityChange);
+                    //velocityChange.z = Mathf.Clamp(velocityChange.z, -maxVelocityChange, maxVelocityChange);
+                    //velocityChange.y = 0;
+
+                    //rb.AddForce(velocityChange, ForceMode.VelocityChange);
+
                 }
             }
             // Checks if player is walking and isGrounded
