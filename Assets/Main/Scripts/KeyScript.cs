@@ -15,7 +15,7 @@ public class KeyScript : MonoBehaviour
     {
         mailBoxController = GameObject.FindGameObjectWithTag("MailBoxController").GetComponent<MailBoxContoller>();
         firstPersonController = GameObject.FindGameObjectWithTag("Player").GetComponent<FirstPersonController>();
-        delayDestroy = DelayDestroo(5f);
+        delayDestroy = DelayDestroo(2.2f);
         StartCoroutine(delayDestroy);
     }
 
@@ -31,7 +31,6 @@ public class KeyScript : MonoBehaviour
         if (collision.collider.tag == "Boundry")
         {
             failedKey = true;
-            //mailBoxController.MailHasFailed();
             firstPersonController.ScreenInfoActivate("Miss!");
             Destroy(this.gameObject);
         }
@@ -55,13 +54,12 @@ public class KeyScript : MonoBehaviour
         }
         else
         {
-            //if (other.gameObject.tag == "Boundry")
-            //{
-            //    failedKey = true;
-            //    //mailBoxController.MailHasFailed();
-            //    firstPersonController.ScreenInfoActivate("Miss!");
-            //    Destroy(this.gameObject);
-            //}
+            if (other.gameObject.tag == "Boundry")
+            {
+                failedKey = true;
+                firstPersonController.ScreenInfoActivate("Miss!");
+                Destroy(this.gameObject);
+            }
         }
     }
 

@@ -13,7 +13,7 @@ public class ItemSelect : MonoBehaviour
     {
         Debug.Log("Start() Grab *item* name is " + this.gameObject.name);
         ammoManagerSpawner = GameObject.FindAnyObjectByType<AmmoManagerSpawner>();
-        PullInteraction.PullActionReleased += NotchEmpty;
+        //PullInteraction.PullActionReleased += NotchEmpty;
         hoverIndicator = GameObject.FindGameObjectWithTag("HoverIndicator");
     }
     public void GrabKey()
@@ -21,7 +21,17 @@ public class ItemSelect : MonoBehaviour
         //fpController.UpdateKeyName(this.gameObject.name);
         //ammoManagerSpawner.SpawnSpecificItemInNotch(this.gameObject.name);
         //Debug.Log("Grab key name is " + this.gameObject.name);
-        
+        bool Notched = ammoManagerSpawner.CheckForArrowInNotch();
+
+        if (!Notched)
+        {
+            _arrowNotched = false;
+        }
+        else
+        {
+            _arrowNotched = true;
+        }
+
         if (!_arrowNotched)
         {
             fpController.UpdateKeyName(this.gameObject.name);
@@ -31,21 +41,19 @@ public class ItemSelect : MonoBehaviour
         }
         else
         {
-            if (ammoManagerSpawner._currentArrow.gameObject != null)
+            string modifiedNameWithoutClone;
+            modifiedNameWithoutClone = ammoManagerSpawner._currentArrow.gameObject.name.Replace("(Clone)", "");
+            Debug.Log("ammoMan arrow name: " + modifiedNameWithoutClone + " item gameobject name: " + this.gameObject.name);
+
+            if (modifiedNameWithoutClone == this.gameObject.name)
             {
-                if (ammoManagerSpawner._currentArrow.gameObject.name == this.gameObject.name)
-                {
-                    //do nothing
-                }
-                else
-                {
-                    fpController.UpdateKeyName(this.gameObject.name);
-                    ammoManagerSpawner.ReplaceCurrentItemInNotch(this.gameObject.name);
-                }
+                //do nothing as it's the same key name
             }
             else
             {
-                _arrowNotched = false;
+                fpController.UpdateKeyName(this.gameObject.name);
+                ammoManagerSpawner.ReplaceCurrentItemInNotch(this.gameObject.name);
+                _arrowNotched = true;
             }
 
             
@@ -57,7 +65,19 @@ public class ItemSelect : MonoBehaviour
         //fpController.UpdateKeyName(this.gameObject.name);
         //ammoManagerSpawner.SpawnSpecificItemInNotch(this.gameObject.name);
         //Debug.Log("Grab key name is " + this.gameObject.name);
-        
+        bool Notched = ammoManagerSpawner.CheckForArrowInNotch();
+
+        if (!Notched)
+        {
+            _arrowNotched = false;
+        }
+        else
+        {
+            _arrowNotched = true;
+        }
+
+
+
         if (!_arrowNotched)
         {
             fpController.UpdateMailName(this.gameObject.name);
@@ -67,24 +87,20 @@ public class ItemSelect : MonoBehaviour
         }
         else
         {
-            if (ammoManagerSpawner._currentArrow.gameObject != null)
+            string modifiedNameWithoutClone;
+            modifiedNameWithoutClone = ammoManagerSpawner._currentArrow.gameObject.name.Replace("(Clone)", "");
+            Debug.Log("ammoMan arrow name: " + modifiedNameWithoutClone + " item gameobject name: " + this.gameObject.name);
+
+            if (modifiedNameWithoutClone == this.gameObject.name)
             {
-                if (ammoManagerSpawner._currentArrow.gameObject.name == this.gameObject.name)
-                {
-                    //do nothing
-                }
-                else
-                {
-                    fpController.UpdateMailName(this.gameObject.name);
-                    ammoManagerSpawner.ReplaceCurrentItemInNotch(this.gameObject.name);
-                }
+                //do nothing as it's the same key name
             }
             else
             {
-                _arrowNotched = false;
+                fpController.UpdateMailName(this.gameObject.name);
+                ammoManagerSpawner.ReplaceCurrentItemInNotch(this.gameObject.name);
+                _arrowNotched = true;
             }
-
-
         }
 
         
@@ -99,14 +115,14 @@ public class ItemSelect : MonoBehaviour
 
     }
 
-    private void NotchEmpty(float value)
-    {
-        float holder;
-        holder = value;
-        _arrowNotched = false;
-    }
-    private void OnDestroy()
-    {
-        PullInteraction.PullActionReleased -= NotchEmpty;
-    }
+    //private void NotchEmpty(float value)
+    //{
+    //    float holder;
+    //    holder = value;
+    //    _arrowNotched = false;
+    //}
+    //private void OnDestroy()
+    //{
+    //    PullInteraction.PullActionReleased -= NotchEmpty;
+    //}
 }

@@ -29,7 +29,7 @@ public class MailScript : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         Vector3 spinDirection = transform.up;
         rb.AddTorque(spinDirection * 10f);
-        delayDestroy = DelayDestroo(7f);
+        delayDestroy = DelayDestroo(2.2f);
         StartCoroutine(delayDestroy);
 
 

@@ -14,6 +14,7 @@ public class AmmoManagerSpawner : MonoBehaviour
     public GameObject holster;
     public GameObject _BowAndArrowGameObject;
     private bool bowInHand = false;
+    public Transform firstPersonPlayerTransform;
     // Start is called before the first frame update
     void Start()
     {
@@ -62,8 +63,9 @@ public class AmmoManagerSpawner : MonoBehaviour
     public void ReholsterBow()
     {
         //_BowAndArrowGameObject.gameObject.transform.position = holster.gameObject.transform.position;
-        _BowAndArrowGameObject.transform.localRotation = holster.transform.rotation;
+        _BowAndArrowGameObject.transform.localRotation = holster.transform.localRotation;
         bowInHand = false;
+
 
     }
 
@@ -76,11 +78,22 @@ public class AmmoManagerSpawner : MonoBehaviour
     public void ReplaceCurrentItemInNotch(string itemName)
     {
         Destroy(_currentArrow);
-        if(_currentArrow == null)
+        _currentArrow = Instantiate(Resources.Load<GameObject>(itemName), notch.transform);
+    }
+
+    public bool CheckForArrowInNotch()
+    {
+        bool notched;
+        if (_currentArrow == null)
         {
-            _currentArrow = Instantiate(Resources.Load<GameObject>(itemName), notch.transform);
+            notched = false;
 
         }
+        else
+        {
+            notched = true;
+        }
+        return notched;
     }
 
 }
