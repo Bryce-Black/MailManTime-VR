@@ -14,7 +14,9 @@ public class AmmoManagerSpawner : MonoBehaviour
     public GameObject holster;
     public GameObject _BowAndArrowGameObject;
     private bool bowInHand = false;
-    public Transform firstPersonPlayerTransform;
+    public UIManager uIManager;
+    public MailBoxContoller mbController;
+    private bool gameStarted = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -66,13 +68,21 @@ public class AmmoManagerSpawner : MonoBehaviour
         _BowAndArrowGameObject.transform.localRotation = holster.transform.localRotation;
         bowInHand = false;
 
-
+        uIManager.SetRayInteractorAlphaValue(0f, true);
     }
 
     public void GrabBow()
     {
         _BowAndArrowGameObject.transform.SetParent(null);
         bowInHand = true;
+        if(!gameStarted)
+        {
+            mbController.BeginTheGame();
+            gameStarted = true;
+        }
+        //set gradient alpha to 1 to activate laser pointer for bow
+        uIManager.SetRayInteractorAlphaValue(1f, true);
+
     }
 
     public void ReplaceCurrentItemInNotch(string itemName)

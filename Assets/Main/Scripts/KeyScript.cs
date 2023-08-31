@@ -15,6 +15,12 @@ public class KeyScript : MonoBehaviour
     {
         mailBoxController = GameObject.FindGameObjectWithTag("MailBoxController").GetComponent<MailBoxContoller>();
         firstPersonController = GameObject.FindGameObjectWithTag("Player").GetComponent<FirstPersonController>();
+        PullInteraction.PullActionReleased += BeginKeyDestroyCountDown;
+    }
+
+    public void BeginKeyDestroyCountDown(float pullStrength)
+    {
+        float swag = pullStrength;
         delayDestroy = DelayDestroo(2.2f);
         StartCoroutine(delayDestroy);
     }

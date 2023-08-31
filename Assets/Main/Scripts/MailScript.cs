@@ -29,11 +29,14 @@ public class MailScript : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         Vector3 spinDirection = transform.up;
         rb.AddTorque(spinDirection * 10f);
+        PullInteraction.PullActionReleased += BeginMailDestroyCountDown;
+    }
+
+    public void BeginMailDestroyCountDown(float pullStrength)
+    {
+        float swag = pullStrength;
         delayDestroy = DelayDestroo(2.2f);
         StartCoroutine(delayDestroy);
-
-
-
     }
     private IEnumerator DelayDestroo(float waitTime)
     {

@@ -54,11 +54,14 @@ public class MailBoxContoller : MonoBehaviour
         //NewTestMailboxLocation();
         //mailBoxTester = MailBoxTester(3f);
         //StartCoroutine(mailBoxTester);
+        
+    }
+
+    public void BeginTheGame()
+    {
         NewMailBoxTarget();
         StartTimerCountDownCoroutine();
     }
-
-    
     public void TimeResetPowerUp()
     {
         timerInitialTime += 5f;
