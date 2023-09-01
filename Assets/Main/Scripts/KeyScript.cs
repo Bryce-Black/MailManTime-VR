@@ -10,19 +10,25 @@ public class KeyScript : MonoBehaviour
     private IEnumerator delayDestroy;
     private bool failedKey = false;
     public AmmoManagerSpawner ammoManagerSpawner;
+    private KeyScript kScript;
 
     private void Start()
     {
         mailBoxController = GameObject.FindGameObjectWithTag("MailBoxController").GetComponent<MailBoxContoller>();
         firstPersonController = GameObject.FindGameObjectWithTag("Player").GetComponent<FirstPersonController>();
         PullInteraction.PullActionReleased += BeginKeyDestroyCountDown;
+        kScript = GetComponent<KeyScript>();
+        delayDestroy = DelayDestroo(2.2f);
     }
 
     public void BeginKeyDestroyCountDown(float pullStrength)
     {
-        float swag = pullStrength;
-        delayDestroy = DelayDestroo(2.2f);
-        StartCoroutine(delayDestroy);
+        if(kScript != null)
+        {
+            float swag = pullStrength;
+            StartCoroutine(delayDestroy);
+        }
+        
     }
 
     private IEnumerator DelayDestroo(float waitTime)
@@ -38,11 +44,21 @@ public class KeyScript : MonoBehaviour
         {
             failedKey = true;
             firstPersonController.ScreenInfoActivate("Miss!");
+            if (delayDestroy != null)
+            {
+                StopCoroutine(delayDestroy);
+
+            }
             Destroy(this.gameObject);
         }
         if (collision.gameObject.tag == this.gameObject.tag && !failedKey)
         {
             mailBoxController.KeyHasUnlockedBox();
+            if (delayDestroy != null)
+            {
+                StopCoroutine(delayDestroy);
+
+            }
             Destroy(this.gameObject);
         }
     }
@@ -56,6 +72,11 @@ public class KeyScript : MonoBehaviour
             Debug.Log("mbconttoller is: " + mailBoxController);
             Debug.Log("key entered trigger of: " + other.gameObject.name);
             mailBoxController.KeyHasUnlockedBox();
+            if (delayDestroy != null)
+            {
+                StopCoroutine(delayDestroy);
+
+            }
             Destroy(this.gameObject);
         }
         else
@@ -64,6 +85,11 @@ public class KeyScript : MonoBehaviour
             {
                 failedKey = true;
                 firstPersonController.ScreenInfoActivate("Miss!");
+                if (delayDestroy != null)
+                {
+                    StopCoroutine(delayDestroy);
+
+                }
                 Destroy(this.gameObject);
             }
         }

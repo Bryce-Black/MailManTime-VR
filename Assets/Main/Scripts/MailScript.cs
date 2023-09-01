@@ -16,7 +16,7 @@ public class MailScript : MonoBehaviour
     FirstPersonController firstPersonController;
     private Rigidbody rb;
     private IEnumerator delayDestroy;
-
+    private MailScript mScript;
     private void Start()
     {
         mailBoxController = GameObject.FindGameObjectWithTag("MailBoxController").GetComponent<MailBoxContoller>();
@@ -30,18 +30,28 @@ public class MailScript : MonoBehaviour
         Vector3 spinDirection = transform.up;
         rb.AddTorque(spinDirection * 10f);
         PullInteraction.PullActionReleased += BeginMailDestroyCountDown;
+        mScript = GetComponent<MailScript>();
     }
 
     public void BeginMailDestroyCountDown(float pullStrength)
     {
-        float swag = pullStrength;
-        delayDestroy = DelayDestroo(2.2f);
-        StartCoroutine(delayDestroy);
+        if(mScript != null)
+        {
+            float swag = pullStrength;
+            delayDestroy = DelayDestroo(2.2f);
+            StartCoroutine(delayDestroy);
+        }
+        
     }
     private IEnumerator DelayDestroo(float waitTime)
     {
         yield return new WaitForSeconds(waitTime);
         mailBoxController.MailHasFailed();
+        if(delayDestroy != null)
+        {
+            StopCoroutine(delayDestroy);
+
+        }
         Destroy(this.gameObject);
     }
     private void OnCollisionEnter(Collision collision)
@@ -49,6 +59,11 @@ public class MailScript : MonoBehaviour
         if(collision.collider.tag == "Boundry")
         {
             mailBoxController.MailHasFailed();
+            if (delayDestroy != null)
+            {
+                StopCoroutine(delayDestroy);
+
+            }
             Destroy(this.gameObject);
         }
     }
@@ -59,6 +74,11 @@ public class MailScript : MonoBehaviour
         {
             mailBoxController.MailHasBeenDelivered(MailPoints);
             Debug.Log("SCORE! +" + MailPoints);
+            if (delayDestroy != null)
+            {
+                StopCoroutine(delayDestroy);
+
+            }
             Destroy(this.gameObject);
         }
         else
@@ -66,6 +86,11 @@ public class MailScript : MonoBehaviour
             if (other.gameObject.tag == "Boundry")
             {
                 mailBoxController.MailHasFailed();
+                if (delayDestroy != null)
+                {
+                    StopCoroutine(delayDestroy);
+
+                }
                 Destroy(this.gameObject);
             }
         }
