@@ -29409,12 +29409,9 @@ GameObject:
   - component: {fileID: 8434202031043716210}
   - component: {fileID: 4801846120092412887}
   - component: {fileID: 7297910380429500189}
-  - component: {fileID: 2073270112943993030}
-  - component: {fileID: 2864292425776200989}
-  - component: {fileID: 1207515160655742627}
   m_Layer: 0
   m_Name: IceMail
-  m_TagString: Ice
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29485,45 +29482,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &2073270112943993030
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9099415995085061832}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c1c00a2b1e4d294f95a4d40022be5b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mailScript: {fileID: 11400000, guid: a6d70981b39f6d146a0b7c6637e1926a, type: 2}
---- !u!65 &2864292425776200989
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9099415995085061832}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.030000003, y: 0.021000002, z: 0.0050000004}
-  m_Center: {x: 0, y: -0.000204552, z: -0.0011591077}
---- !u!54 &1207515160655742627
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9099415995085061832}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 96
-  m_CollisionDetection: 0
