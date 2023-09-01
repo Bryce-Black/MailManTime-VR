@@ -195,7 +195,7 @@ public class FirstPersonController : MonoBehaviour
     public Animator leftHandAnimator;
     public Animator rightHandAnimator;
     public UIManager uImanager;
-
+    private bool gameIsPaused = false;
     private void Awake()
     {
         selectedKeyPositionV3 = keyUIGameObjects[0].transform.position;
@@ -395,6 +395,7 @@ public class FirstPersonController : MonoBehaviour
     }
     private void Update()
     {
+        
         float rightTriggerValue = rightTriggerPull.action.ReadValue<float>();
         float leftTriggerValue = leftTriggerPull.action.ReadValue<float>();
         Vector2 turnValue = rightJoystickAxis.action.ReadValue<Vector2>();
@@ -441,7 +442,7 @@ public class FirstPersonController : MonoBehaviour
         }
         if (Input.GetKeyDown(jumpKey))
         {
-            if (enableJump)
+            if (enableJump && !gameIsPaused)
             {
                 CheckGround();
                 if (isGrounded)
@@ -468,6 +469,14 @@ public class FirstPersonController : MonoBehaviour
         if(Input.GetKeyUp(pauseButton))
         {
             Debug.Log("pauseButtonPressed");
+            if(!gameIsPaused)
+            {
+                gameIsPaused = true;
+            }
+            else
+            {
+                gameIsPaused = false;
+            }
             uImanager.ToggleOptionsMenu();
         }
 

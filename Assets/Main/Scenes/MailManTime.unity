@@ -691,7 +691,7 @@ MonoBehaviour:
   m_SphereCastRadius: 0.1
   m_RaycastMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 507
   m_RaycastTriggerInteraction: 1
   m_RaycastSnapVolumeInteraction: 1
   m_HitClosestOnly: 0
@@ -1942,7 +1942,7 @@ MonoBehaviour:
   m_SphereCastRadius: 0.1
   m_RaycastMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 507
   m_RaycastTriggerInteraction: 1
   m_RaycastSnapVolumeInteraction: 1
   m_HitClosestOnly: 0
@@ -8435,7 +8435,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &276464441
 Transform:
   m_ObjectHideFlags: 0
@@ -10001,7 +10001,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &409116100
 Transform:
   m_ObjectHideFlags: 0
@@ -26624,13 +26624,13 @@ GameObject:
   - component: {fileID: 1272617205}
   - component: {fileID: 1272617204}
   - component: {fileID: 1272617203}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: Damaged
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1272617202
 RectTransform:
   m_ObjectHideFlags: 0
@@ -26639,7 +26639,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1272617201}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 12.17}
+  m_LocalPosition: {x: 0, y: 0, z: 2.038}
   m_LocalScale: {x: 0.06014065, y: 0.06014065, z: 0.06014065}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -28593,7 +28593,7 @@ GameObject:
   - component: {fileID: 1438777548}
   m_Layer: 0
   m_Name: MailMail
-  m_TagString: Fire
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29024,7 +29024,7 @@ GameObject:
   - component: {fileID: 1449748658}
   m_Layer: 0
   m_Name: MetalMail
-  m_TagString: Fire
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30256,7 +30256,7 @@ GameObject:
   - component: {fileID: 1545150444}
   m_Layer: 0
   m_Name: IceMail
-  m_TagString: Fire
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30269,7 +30269,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1545150436}
   m_LocalRotation: {x: -0, y: 0.78178555, z: -0, w: 0.6235473}
-  m_LocalPosition: {x: -0.0517, y: 0.09019995, z: -0.382}
+  m_LocalPosition: {x: -0.052, y: 0.096, z: -0.385}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -31085,7 +31085,7 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 0
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 0.839
@@ -77544,7 +77544,7 @@ GameObject:
   - component: {fileID: 5939127297802994946}
   m_Layer: 0
   m_Name: FireMail
-  m_TagString: Fire
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

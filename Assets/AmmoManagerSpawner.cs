@@ -87,6 +87,7 @@ public class AmmoManagerSpawner : MonoBehaviour
 
     public void ReplaceCurrentItemInNotch(string itemName)
     {
+        Debug.Log("destroying: " + _currentArrow.name + " relaced with " + itemName);
         Destroy(_currentArrow);
         _currentArrow = Instantiate(Resources.Load<GameObject>(itemName), notch.transform);
     }
