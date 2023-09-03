@@ -2627,8 +2627,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 119113355}
-  m_LocalRotation: {x: 0.11722265, y: -0.092354916, z: -0.0262968, w: 0.9884524}
-  m_LocalPosition: {x: -0.113, y: 0.932, z: 0.855}
+  m_LocalRotation: {x: 0.021052541, y: -0.10052054, z: -0.0053998283, w: 0.9946976}
+  m_LocalPosition: {x: -0.252, y: 1.252, z: 0.899}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2636,7 +2636,7 @@ Transform:
   - {fileID: 9008461864237714868}
   m_Father: {fileID: 4918451716113458206}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 13.114, y: -11.174, z: -4.336}
+  m_LocalEulerAnglesHint: {x: 2.338, y: -11.559, z: -0.859}
 --- !u!1 &143492208
 GameObject:
   m_ObjectHideFlags: 0
@@ -23184,7 +23184,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 698388110}
   m_LocalRotation: {x: 0.1595605, y: 0.000000014901161, z: -2.220446e-16, w: 0.9871882}
-  m_LocalPosition: {x: 0, y: 0, z: 0.073}
+  m_LocalPosition: {x: 0, y: 0, z: -0.114}
   m_LocalScale: {x: 0.018087205, y: 0.018087206, z: 0.018087205}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -23193,7 +23193,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.995, y: 0.219}
+  m_AnchoredPosition: {x: 0.995, y: -0.345}
   m_SizeDelta: {x: 75.5855, y: 16.1592}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &698388112
@@ -28215,8 +28215,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1241899597}
-  m_LocalRotation: {x: -0.0034482246, y: -0.15170884, z: -0.6634495, w: 0.7326713}
-  m_LocalPosition: {x: -1.096, y: 0.821, z: -0.001}
+  m_LocalRotation: {x: -0.11867897, y: -0.04543658, z: -0.6790556, w: 0.72300375}
+  m_LocalPosition: {x: -0.071, y: 0.518, z: -0.372}
   m_LocalScale: {x: 3.6910696, y: 3.6910696, z: 3.6910694}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -28225,7 +28225,7 @@ Transform:
   - {fileID: 1061796292}
   m_Father: {fileID: 1858180216}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: -11.909, y: -12.857, z: -82.976}
+  m_LocalEulerAnglesHint: {x: -13.493, y: 5.635, z: -87.076}
 --- !u!1 &1243885929
 GameObject:
   m_ObjectHideFlags: 0
@@ -33413,7 +33413,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1662639497}
   m_LocalRotation: {x: 0.15956052, y: 0.000000022351742, z: -0.0000000037252903, w: 0.98718816}
-  m_LocalPosition: {x: 0, y: 0, z: 0.24700063}
+  m_LocalPosition: {x: 0, y: 0, z: 0.185}
   m_LocalScale: {x: 0.018087203, y: 0.01808721, z: 0.018087203}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -33422,8 +33422,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.99499893, y: 0.74400055}
-  m_SizeDelta: {x: 75.5855, y: 16.1592}
+  m_AnchoredPosition: {x: 1.021, y: 0.556}
+  m_SizeDelta: {x: 89.7199, y: 15.1607}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1662639499
 CanvasRenderer:
@@ -33453,7 +33453,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'TIME:'
+  m_text: TIMER
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ab76ecaa13c042644b8f52ebfbe5e8b5, type: 2}
   m_sharedMaterial: {fileID: 2589137843876772202, guid: ab76ecaa13c042644b8f52ebfbe5e8b5, type: 2}
@@ -39613,7 +39613,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1782659688}
   m_LocalRotation: {x: 0.09025005, y: -0.20107964, z: -0.6994319, w: 0.6798654}
-  m_LocalPosition: {x: 0, y: 0, z: -0.087}
+  m_LocalPosition: {x: 0, y: 0, z: -0.12}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -39622,8 +39622,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: -9.124, y: -23.878, z: -89.692}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.175, y: -0.042}
-  m_SizeDelta: {x: 59.9928, y: 17.3779}
+  m_AnchoredPosition: {x: 0.1988, y: -0.0751}
+  m_SizeDelta: {x: 61.437, y: 13.7389}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1782659690
 MonoBehaviour:
@@ -39645,7 +39645,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Grab bow to start!
+  m_text: 'Grab bow to start!
+
+    |
+
+    v'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ab76ecaa13c042644b8f52ebfbe5e8b5, type: 2}
   m_sharedMaterial: {fileID: 2589137843876772202, guid: ab76ecaa13c042644b8f52ebfbe5e8b5, type: 2}
@@ -39708,7 +39712,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 13.298546, z: 0, w: 13.093432}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -47164,7 +47168,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2035715603}
   m_LocalRotation: {x: 0.1595605, y: 0.000000014901161, z: -2.220446e-16, w: 0.9871882}
-  m_LocalPosition: {x: 0, y: 0, z: 0.204}
+  m_LocalPosition: {x: 0, y: 0, z: 0.1}
   m_LocalScale: {x: 0.12729847, y: 0.12729846, z: 0.12729846}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -47178,7 +47182,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1.204, y: 0.616}
+  m_AnchoredPosition: {x: 1.181, y: 0.305}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2041924898
@@ -82193,7 +82197,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4918451716113458194}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 18.83, y: 1.552434, z: -1.8}
+  m_LocalPosition: {x: 18.83, y: 1.552434, z: -1.69}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -90489,6 +90493,7 @@ MonoBehaviour:
   exampleLeftHandModelSqueeze: {fileID: 1698868714}
   exampleRightHandModelSqueeze: {fileID: 1241899597}
   rightHandBowDrawExample: {fileID: 901132192}
+  firstPersonController: {fileID: 4918451716113458200}
 --- !u!120 &9008461864237714870
 LineRenderer:
   m_ObjectHideFlags: 0

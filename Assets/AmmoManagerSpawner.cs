@@ -20,6 +20,7 @@ public class AmmoManagerSpawner : MonoBehaviour
     public GameObject exampleLeftHandModelSqueeze;
     public GameObject exampleRightHandModelSqueeze;
     public GameObject rightHandBowDrawExample;
+    public FirstPersonController firstPersonController;
     // Start is called before the first frame update
     void Start()
     {
@@ -87,7 +88,7 @@ public class AmmoManagerSpawner : MonoBehaviour
         }
         //set gradient alpha to 1 to activate laser pointer for bow
         uIManager.SetRayInteractorAlphaValue(1f, true);
-
+        firstPersonController.BowHasBeenGrabbed();
     }
 
     public void ReplaceCurrentItemInNotch(string itemName)

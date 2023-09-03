@@ -36,6 +36,7 @@ public class FirstPersonController : MonoBehaviour
     private string keyNameInResourceFolder = "Key";
     private bool keyInHand = true;
     private Vector3 currentVector3;
+    private bool bowGrabbed = false;
     #endregion ShootingVariables
 
     #region UI
@@ -700,7 +701,7 @@ public class FirstPersonController : MonoBehaviour
         //GRAVITY
         rb.AddForce(Vector3.down * gravityScale);
         #region Movement
-        if (playerCanMove)
+        if (playerCanMove && bowGrabbed)
         {
             // Calculate how fast we should be moving
             Vector3 targetVelocity = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
@@ -819,6 +820,10 @@ public class FirstPersonController : MonoBehaviour
         //Debug.Log("Is grounded?: " + isGrounded);
     }
 
+    public void BowHasBeenGrabbed()
+    {
+        bowGrabbed = true;
+    }
     private void Jump()
     {
         // Adds force to the player rigidbody to jump
