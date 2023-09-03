@@ -59,6 +59,7 @@ public class MailBoxContoller : MonoBehaviour
 
     public void BeginTheGame()
     {
+        //spawn at index 5 to start
         NewMailBoxTarget();
         StartTimerCountDownCoroutine();
     }
@@ -148,11 +149,15 @@ public class MailBoxContoller : MonoBehaviour
     }
     public void NewMailBoxTarget()
     {
-        if(GameStarted == true)
+        if(GameStarted == false)
         {
-            
+            randomNumber = 5;
         }
-        RandomMailBoxGenerator();
+        else
+        {
+            RandomMailBoxGenerator();
+        }
+        
         SpawnARandomMailBox();
         
         GameStarted = true;

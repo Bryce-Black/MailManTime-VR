@@ -9,6 +9,8 @@ public class ItemSelect : MonoBehaviour
     private bool _arrowNotched = false;
     private bool gameStarted = false;
     private GameObject hoverIndicator;
+    private GameObject rightHandModelExample;
+    public GameObject bowRightHandDrawExample;
     private void Start()
     {
         Debug.Log("Start() Grab *item* name is " + this.gameObject.name);
@@ -21,6 +23,13 @@ public class ItemSelect : MonoBehaviour
         //fpController.UpdateKeyName(this.gameObject.name);
         //ammoManagerSpawner.SpawnSpecificItemInNotch(this.gameObject.name);
         //Debug.Log("Grab key name is " + this.gameObject.name);
+        rightHandModelExample = GameObject.FindGameObjectWithTag("RightHandExample");
+
+        if (rightHandModelExample != null)
+        {
+            rightHandModelExample.SetActive(false);
+            bowRightHandDrawExample.SetActive(true);
+        }
         bool Notched = ammoManagerSpawner.CheckForArrowInNotch();
 
         if (!Notched)
@@ -36,6 +45,7 @@ public class ItemSelect : MonoBehaviour
         {
             fpController.UpdateKeyName(this.gameObject.name);
             ammoManagerSpawner.SpawnSpecificItemInNotch(this.gameObject.name);
+            
             Debug.Log("Grab key name is " + this.gameObject.name);
             _arrowNotched = true;
         }

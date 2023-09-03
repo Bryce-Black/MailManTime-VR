@@ -17,6 +17,9 @@ public class AmmoManagerSpawner : MonoBehaviour
     public UIManager uIManager;
     public MailBoxContoller mbController;
     private bool gameStarted = false;
+    public GameObject exampleLeftHandModelSqueeze;
+    public GameObject exampleRightHandModelSqueeze;
+    public GameObject rightHandBowDrawExample;
     // Start is called before the first frame update
     void Start()
     {
@@ -78,6 +81,8 @@ public class AmmoManagerSpawner : MonoBehaviour
         if(!gameStarted)
         {
             mbController.BeginTheGame();
+            exampleLeftHandModelSqueeze.SetActive(false);
+            exampleRightHandModelSqueeze.SetActive(true);
             gameStarted = true;
         }
         //set gradient alpha to 1 to activate laser pointer for bow
@@ -105,6 +110,15 @@ public class AmmoManagerSpawner : MonoBehaviour
             notched = true;
         }
         return notched;
+    }
+
+    public void DisableBowDrawExampleHand()
+    {
+        if(rightHandBowDrawExample != null)
+        {
+            rightHandBowDrawExample.SetActive(false);
+
+        }
     }
 
 }
