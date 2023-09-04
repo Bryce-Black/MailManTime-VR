@@ -242,6 +242,8 @@ public class MailBoxContoller : MonoBehaviour
     {
         if(mailBoxUnlocked)
         {
+            AudioSource source = GameObject.FindGameObjectWithTag("MailDelivered").GetComponent<AudioSource>();
+            source.Play();
             Destroy(newMailBox);
             firstPersonController.CheckGround();
             if(!firstPersonController.isGrounded)
@@ -287,6 +289,8 @@ public class MailBoxContoller : MonoBehaviour
     }
     private void LoseOneHealthPoint()
     {
+        AudioSource source = GameObject.FindGameObjectWithTag("Damaged").GetComponent<AudioSource>();
+        source.Play();
         playerHealthHearts[playerHealthIndex].SetActive(false);
         playerHealthIndex -= 1;
         if(playerHealthIndex == -1)
@@ -311,6 +315,8 @@ public class MailBoxContoller : MonoBehaviour
         mailBoxUnlocked = true;
         Animator doorOpen = GameObject.FindGameObjectWithTag("MailBox").GetComponent<Animator>();
         doorOpen.SetTrigger("MailBoxOpen");
+        AudioSource source = GameObject.FindGameObjectWithTag("DoorUnlock").GetComponent<AudioSource>();
+        source.Play();
     }
     public void KeyHasFailed()
     {

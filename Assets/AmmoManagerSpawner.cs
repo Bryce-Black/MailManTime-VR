@@ -60,11 +60,7 @@ public class AmmoManagerSpawner : MonoBehaviour
         _currentArrow = null;
     }
 
-    public void SpawnSpecificItemInNotch(string itemName)
-    {
-        Debug.Log("attempting to instantiate on notch: " + itemName);
-        _currentArrow = Instantiate(Resources.Load<GameObject>(itemName), notch.transform);
-    }
+
 
     public void ReholsterBow()
     {
@@ -91,9 +87,19 @@ public class AmmoManagerSpawner : MonoBehaviour
         firstPersonController.BowHasBeenGrabbed();
     }
 
+    public void SpawnSpecificItemInNotch(string itemName)
+    {
+        Debug.Log("attempting to instantiate on notch: " + itemName);
+        AudioSource source = GameObject.FindGameObjectWithTag("BowLoad").GetComponent<AudioSource>();
+        source.Play();
+        _currentArrow = Instantiate(Resources.Load<GameObject>(itemName), notch.transform);
+    }
+
     public void ReplaceCurrentItemInNotch(string itemName)
     {
         Debug.Log("destroying: " + _currentArrow.name + " relaced with " + itemName);
+        AudioSource source = GameObject.FindGameObjectWithTag("BowLoad").GetComponent<AudioSource>();
+        source.Play();
         Destroy(_currentArrow);
         _currentArrow = Instantiate(Resources.Load<GameObject>(itemName), notch.transform);
     }

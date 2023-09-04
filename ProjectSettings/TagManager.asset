@@ -25,6 +25,14 @@ TagManager:
   - ScreenInfoText
   - HoverIndicator
   - RightHandExample
+  - BowLoad
+  - Damaged
+  - DoorUnlock
+  - JumpPad
+  - MailDelivered
+  - KeyFail
+  - PowerUp
+  - Music
   layers:
   - Default
   - TransparentFX

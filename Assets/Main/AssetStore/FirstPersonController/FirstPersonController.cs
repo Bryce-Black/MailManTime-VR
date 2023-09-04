@@ -279,6 +279,8 @@ public class FirstPersonController : MonoBehaviour
                 sprintSpeed *= 2;
                 StartCoroutine(powerUp);
             }
+            AudioSource source = GameObject.FindGameObjectWithTag("PowerUp").GetComponent<AudioSource>();
+            source.Play();
             Destroy(other.gameObject);
             //puController.GenerateRandomSpawnLocation();
             
@@ -299,12 +301,16 @@ public class FirstPersonController : MonoBehaviour
                 powerUp = PowerUp(10f);
                 StartCoroutine(powerUp);
             }
+            AudioSource source = GameObject.FindGameObjectWithTag("PowerUp").GetComponent<AudioSource>();
+            source.Play();
             Destroy(other.gameObject);
             //puController.GenerateRandomSpawnLocation();
 
         }
         if (other.gameObject.tag == "TimeAdd")
         {
+            AudioSource source = GameObject.FindGameObjectWithTag("PowerUp").GetComponent<AudioSource>();
+            source.Play();
             screenInfoText.text = "+5 Seconds!";
             scrennInfoAnim.SetTrigger("ScreenInfoTrigger");
             Debug.Log("TimeAdd");
@@ -314,9 +320,18 @@ public class FirstPersonController : MonoBehaviour
         }
         if (other.gameObject.tag == "LaunchPad")
         {
+            AudioSource source = GameObject.FindGameObjectWithTag("JumpPad").GetComponent<AudioSource>();
+            source.Play();
             Debug.Log("LaunchPad");
             rb.velocity = Vector3.zero;
             rb.AddForce(Vector3.up * 5000f);
+        }
+    }
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.tag == "LaunchPad")
+        {
+            rb.AddForce(Vector3.up * 100f);
         }
     }
     private IEnumerator PowerUp(float waitTime)

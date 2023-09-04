@@ -49,6 +49,8 @@ public class KeyScript : MonoBehaviour
                 StopCoroutine(delayDestroy);
 
             }
+            AudioSource source = GameObject.FindGameObjectWithTag("KeyFail").GetComponent<AudioSource>();
+            source.Play();
             Destroy(this.gameObject);
         }
         if (collision.gameObject.tag == this.gameObject.tag && !failedKey)
@@ -90,6 +92,8 @@ public class KeyScript : MonoBehaviour
                     StopCoroutine(delayDestroy);
 
                 }
+                AudioSource source = GameObject.FindGameObjectWithTag("KeyFail").GetComponent<AudioSource>();
+                source.Play();
                 Destroy(this.gameObject);
             }
         }
