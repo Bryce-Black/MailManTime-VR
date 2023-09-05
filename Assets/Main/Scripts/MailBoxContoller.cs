@@ -62,6 +62,7 @@ public class MailBoxContoller : MonoBehaviour
         //spawn at index 5 to start
         NewMailBoxTarget();
         StartTimerCountDownCoroutine();
+        music.Play();
     }
     public void TimeResetPowerUp()
     {
@@ -257,14 +258,14 @@ public class MailBoxContoller : MonoBehaviour
                 firstPersonController.ScreenInfoActivate("+" + points);
             }
             
-            if(PlayerScore >= 100)
+            if(PlayerScore >= 25)
             {
                 uIManager.YouWin();
             }
             Debug.Log("Mail Delivered! Get Points: " + points);
             Debug.Log("Total Points: " + PlayerScore);
             NewMailBoxTarget();
-            PlayerScoreText.text = "SCORE: " + PlayerScore.ToString() + "/100";
+            PlayerScoreText.text = "SCORE: " + PlayerScore.ToString() + "/25";
             DecreaseMailSpawnTime();
             StartTimerCountDownCoroutine();
             keysUI.SetActive(true);

@@ -33,6 +33,7 @@ TagManager:
   - KeyFail
   - PowerUp
   - Music
+  - Shoot
   layers:
   - Default
   - TransparentFX

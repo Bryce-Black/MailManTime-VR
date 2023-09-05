@@ -49,6 +49,10 @@ public class Arrow : MonoBehaviour
 
         _particleSystem.Play();
         _trailRenderer.emitting = true;
+
+        AudioSource shootEffect = GameObject.FindGameObjectWithTag("Shoot").GetComponent<AudioSource>();
+        shootEffect.Play();
+
     }
 
     private IEnumerator RotateWithVelocity()

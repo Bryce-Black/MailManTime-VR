@@ -14,13 +14,12 @@ public class UIManager : MonoBehaviour
     private float totalTime;
     public TextMeshProUGUI totalTimeText;
     public FirstPersonController firstPersonController;
-    private AudioSource music;
+    public AudioSource music;
     private bool gameOver = false;
     public XRInteractorLineVisual xrLineVisualLeft, xrLineVisualRight;
     private void Start()
     {
-        music = GetComponent<AudioSource>();
-
+        //YouWin();
     }
 
     private void Update()
@@ -49,14 +48,14 @@ public class UIManager : MonoBehaviour
     }
     public void YouWin()
     {
+        Time.timeScale = 0f;
+        SetRayInteractorAlphaValue(1f, false);
         gameOver = true;
         firstPersonController.enabled = false;
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
         youWinPanel.SetActive(true);
         float roundedTime = (float)Math.Round(totalTime, 2);
         totalTime = roundedTime;
-        totalTimeText.text = totalTime.ToString();
+        totalTimeText.text = "TOTAL TIME: " + totalTime.ToString();
 
     }
     public void ToggleMusic()
