@@ -43,6 +43,7 @@ public class MailBoxContoller : MonoBehaviour
     public GameObject keysUI;
     public GameObject mailUI;
     public UIManager uIManager;
+    public BowUIHoverIndicator bowUIHoverIndicator;
     private void Start()
     {
         firstPersonController = GameObject.FindGameObjectWithTag("Player").GetComponent<FirstPersonController>();
@@ -199,7 +200,7 @@ public class MailBoxContoller : MonoBehaviour
             //SetDoorColorAndTag();
 
         }
-
+        bowUIHoverIndicator.ChangeHoverMail(ranNum);
         //Debug.Log("MailBox Spawned type is " + newMailBox.name);
     }
     private void SetDoorColorAndTag()
@@ -224,6 +225,8 @@ public class MailBoxContoller : MonoBehaviour
         }
         targetMailBoxTransform = mailBoxDoor.transform;
         pointerScript.UpdateTargetPosition(targetMailBoxTransform);
+        bowUIHoverIndicator.ChangeHoverKey(ranColorNum);
+
         //Debug.Log("MailBox Spawned target color is: " + mailBoxDoor.tag);
     }
     public void MailBoxHasFinishedSpawning()

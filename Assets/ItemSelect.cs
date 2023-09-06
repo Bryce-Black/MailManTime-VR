@@ -115,6 +115,7 @@ public class ItemSelect : MonoBehaviour
 
         
     }
+    //need to remove from on hover method
     public void ChangeHoverIndicatorPosition()
     {
         if(hoverIndicator != null && this.gameObject != null)

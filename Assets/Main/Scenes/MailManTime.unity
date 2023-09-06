@@ -2484,6 +2484,7 @@ MonoBehaviour:
   keysUI: {fileID: 276464440}
   mailUI: {fileID: 409116099}
   uIManager: {fileID: 731839380}
+  bowUIHoverIndicator: {fileID: 1051572439}
 --- !u!1 &119113355
 GameObject:
   m_ObjectHideFlags: 0
@@ -11025,8 +11026,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 4008694484180821551}
   - {fileID: 1438777541}
+  - {fileID: 4008694484180821551}
   - {fileID: 1545150437}
   - {fileID: 1449748651}
   m_Father: {fileID: 1051572438}
@@ -27112,6 +27113,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1051572438}
+  - component: {fileID: 1051572439}
   m_Layer: 0
   m_Name: UIGameObjects
   m_TagString: Untagged
@@ -27137,6 +27139,28 @@ Transform:
   m_Father: {fileID: 9008461864237714868}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 65.716, z: 0}
+--- !u!114 &1051572439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1051572437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d55e6568f27d07a4eaf5c1dbdf3c898a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  keysList:
+  - {fileID: 2434318686901293297}
+  - {fileID: 1876858724}
+  - {fileID: 1919913403}
+  mailList:
+  - {fileID: 1438777540}
+  - {fileID: 4389442593912142997}
+  - {fileID: 1545150436}
+  - {fileID: 1449748650}
+  hoverIndicator: {fileID: 1783046707}
 --- !u!1 &1053019789
 GameObject:
   m_ObjectHideFlags: 0
@@ -31467,7 +31491,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 409116100}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 102.849, z: 0}
 --- !u!135 &1438777542
 SphereCollider:
@@ -40319,7 +40343,7 @@ GameObject:
   - component: {fileID: 1783046710}
   - component: {fileID: 1783046709}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: HoverIndicator
   m_TagString: HoverIndicator
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -80456,7 +80480,7 @@ Transform:
   m_Children:
   - {fileID: 7082600417803223982}
   m_Father: {fileID: 409116100}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 102.849, z: 0}
 --- !u!1 &4025102338314184892
 GameObject:
