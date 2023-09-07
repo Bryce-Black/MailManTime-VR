@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Arrow : MonoBehaviour
 {
-    public float speed = 10f;
+    public float speed = 85f;
     public Transform tip;
 
     private Rigidbody _rigidbody;

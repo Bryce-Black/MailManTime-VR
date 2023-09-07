@@ -16,8 +16,8 @@ MonoBehaviour:
   - Default
   - Interactable
   - InteractableIgnoreRay
-  - 
-  - 
+  - InteractableRightONLY
+  - InteractableLefttONLY
   - 
   - 
   - 

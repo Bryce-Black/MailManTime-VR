@@ -40,10 +40,12 @@ public class MailBoxContoller : MonoBehaviour
     public GameObject reticle;
     public AudioSource music;
 
-    public GameObject keysUI;
-    public GameObject mailUI;
+    public List<GameObject> keysUI = new List<GameObject>();
+    public List<GameObject> mailUI = new List<GameObject>();
     public UIManager uIManager;
     public BowUIHoverIndicator bowUIHoverIndicator;
+    private int currentMailIndex;
+    private Vector3 initialPositionOfHover;
     private void Start()
     {
         firstPersonController = GameObject.FindGameObjectWithTag("Player").GetComponent<FirstPersonController>();
@@ -51,19 +53,20 @@ public class MailBoxContoller : MonoBehaviour
         MailBoxTesterIndex = numberOfMailBoxes -1;
         Debug.Log("Mailboxtesterindex: " + MailBoxTesterIndex);
         playerHealthIndex = playerHealthHearts.Count - 1;
+        GameObject hoverIndicator = GameObject.FindGameObjectWithTag("HoverIndicator");
+        initialPositionOfHover = hoverIndicator.transform.position;
         ////this is for testing all spawn locations
         //NewTestMailboxLocation();
         //mailBoxTester = MailBoxTester(3f);
         //StartCoroutine(mailBoxTester);
-        
+
     }
 
     public void BeginTheGame()
     {
         //spawn at index 5 to start
         NewMailBoxTarget();
-        StartTimerCountDownCoroutine();
-        music.Play();
+        
     }
     public void TimeResetPowerUp()
     {
@@ -162,7 +165,6 @@ public class MailBoxContoller : MonoBehaviour
         
         SpawnARandomMailBox();
         
-        GameStarted = true;
     }
     private void SpawnARandomMailBox()
     {
@@ -200,7 +202,7 @@ public class MailBoxContoller : MonoBehaviour
             //SetDoorColorAndTag();
 
         }
-        bowUIHoverIndicator.ChangeHoverMail(ranNum);
+        currentMailIndex = ranNum;
         //Debug.Log("MailBox Spawned type is " + newMailBox.name);
     }
     private void SetDoorColorAndTag()
@@ -246,6 +248,8 @@ public class MailBoxContoller : MonoBehaviour
     {
         if(mailBoxUnlocked)
         {
+            GameObject hoverIndicator = GameObject.FindGameObjectWithTag("HoverIndicator");
+            hoverIndicator.transform.position = initialPositionOfHover;
             AudioSource source = GameObject.FindGameObjectWithTag("MailDelivered").GetComponent<AudioSource>();
             source.Play();
             Destroy(newMailBox);
@@ -271,8 +275,8 @@ public class MailBoxContoller : MonoBehaviour
             PlayerScoreText.text = "SCORE: " + PlayerScore.ToString() + "/25";
             DecreaseMailSpawnTime();
             StartTimerCountDownCoroutine();
-            keysUI.SetActive(true);
-            mailUI.SetActive(false);
+            ToggleKeysAndMailUI(true);
+            
         }
        
     }
@@ -288,8 +292,7 @@ public class MailBoxContoller : MonoBehaviour
         NewMailBoxTarget();
         PlayerScoreText.text = "SCORE: " + PlayerScore.ToString() + "/100";
         LoseOneHealthPoint();
-        keysUI.SetActive(true);
-        mailUI.SetActive(false);
+        ToggleKeysAndMailUI(true);
     }
     private void LoseOneHealthPoint()
     {
@@ -309,8 +312,13 @@ public class MailBoxContoller : MonoBehaviour
     }
     public void KeyHasUnlockedBox()
     {
-        keysUI.SetActive(false);
-        mailUI.SetActive(true);
+        if(!GameStarted)
+        {
+            GameStarted = true;
+            StartTimerCountDownCoroutine();
+            music.Play();
+        }
+        ToggleKeysAndMailUI(false);
         if (timerInitialTime > 0)
         {
             timerInitialTime += 5f;
@@ -326,5 +334,38 @@ public class MailBoxContoller : MonoBehaviour
     {
         Destroy(newMailBox);
         NewMailBoxTarget();
+    }
+
+    private void ToggleKeysAndMailUI(bool keys)
+    {
+        GameObject hoverIndicator = GameObject.FindGameObjectWithTag("HoverIndicator");
+        hoverIndicator.transform.SetParent(null);
+        if (!keys)
+        {
+            bowUIHoverIndicator.ChangeHoverMail(currentMailIndex);
+            foreach (GameObject obj in mailUI)
+            {
+                obj.SetActive(true);
+
+            }
+            foreach (GameObject obj in keysUI)
+            {
+                obj.SetActive(false);
+
+            }
+        }
+        else
+        {
+            foreach (GameObject obj in mailUI)
+            {
+                obj.SetActive(false);
+
+            }
+            foreach (GameObject obj in keysUI)
+            {
+                obj.SetActive(true);
+
+            }
+        }
     }
 }

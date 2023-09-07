@@ -116,15 +116,15 @@ public class ItemSelect : MonoBehaviour
         
     }
     //need to remove from on hover method
-    public void ChangeHoverIndicatorPosition()
-    {
-        if(hoverIndicator != null && this.gameObject != null)
-        {
-            hoverIndicator.transform.position = this.gameObject.transform.position;
-        }
+    //public void ChangeHoverIndicatorPosition()
+    //{
+    //    if(hoverIndicator != null && this.gameObject != null)
+    //    {
+    //        hoverIndicator.transform.position = this.gameObject.transform.position;
+    //    }
         
 
-    }
+    //}
 
     //private void NotchEmpty(float value)
     //{

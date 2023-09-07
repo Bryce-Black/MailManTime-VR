@@ -9,13 +9,18 @@ public class BowUIHoverIndicator : MonoBehaviour
     public GameObject hoverIndicator;
     public void ChangeHoverKey(int index)
     {
-        hoverIndicator.transform.position = keysList[index].gameObject.transform.position;
+        hoverIndicator.gameObject.transform.SetParent(keysList[index].transform);
+        hoverIndicator.transform.localPosition = new Vector3(0, 0, 0);
+        //hoverIndicator.transform.position = keysList[index].gameObject.transform.position;
 
     }
 
     public void ChangeHoverMail(int index)
     {
-        hoverIndicator.transform.position = mailList[index].gameObject.transform.position;
+        hoverIndicator.gameObject.transform.SetParent(mailList[index].transform);
+        hoverIndicator.transform.localPosition = new Vector3(0, 0, 0);
 
     }
+
+   
 }
