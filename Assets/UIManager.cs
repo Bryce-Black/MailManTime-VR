@@ -117,4 +117,10 @@ public class UIManager : MonoBehaviour
         
         //xrLineVisualRight.validColorGradient = gradient;
     }
+
+    public void DisableRayInteractors(bool value)
+    {
+        xrLineVisualLeft.gameObject.SetActive(value);
+        xrLineVisualRight.gameObject.SetActive(value);
+    }
 }
