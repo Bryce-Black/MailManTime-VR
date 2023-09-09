@@ -290,7 +290,7 @@ public class MailBoxContoller : MonoBehaviour
         Debug.Log("Mail Failed! Total Points: " + PlayerScore);
         Destroy(newMailBox);
         NewMailBoxTarget();
-        PlayerScoreText.text = "SCORE: " + PlayerScore.ToString() + "/100";
+        PlayerScoreText.text = "SCORE: " + PlayerScore.ToString() + "/25";
         LoseOneHealthPoint();
         ToggleKeysAndMailUI(true);
     }

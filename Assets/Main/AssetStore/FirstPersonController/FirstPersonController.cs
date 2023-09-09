@@ -199,8 +199,8 @@ public class FirstPersonController : MonoBehaviour
     private bool gameIsPaused = false;
     private void Awake()
     {
-        selectedKeyPositionV3 = keyUIGameObjects[0].transform.position;
-        selectedMailPositionV3 = mailUIGameObjects[0].transform.position;
+        //selectedKeyPositionV3 = keyUIGameObjects[0].transform.position;
+        //selectedMailPositionV3 = mailUIGameObjects[0].transform.position;
         
         rb = GetComponent<Rigidbody>();
         playerCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
@@ -222,8 +222,7 @@ public class FirstPersonController : MonoBehaviour
     void Start()
     {
 
-        Application.targetFrameRate = 120;
-        Time.fixedDeltaTime = 0.00833f;
+        
         mbController = GameObject.FindGameObjectWithTag("MailBoxController").GetComponent<MailBoxContoller>();
         #region Sprint Bar
         sprintBarCG = GetComponentInChildren<CanvasGroup>();
@@ -257,6 +256,9 @@ public class FirstPersonController : MonoBehaviour
     }
     public void ScreenInfoActivate(string infoText)
     {
+        scrennInfoAnim.gameObject.SetActive(false);
+        scrennInfoAnim.gameObject.SetActive(true);
+
         screenInfoText.text = infoText;
         scrennInfoAnim.SetTrigger("ScreenInfoTrigger");
     }
@@ -264,8 +266,9 @@ public class FirstPersonController : MonoBehaviour
     {
         if (other.gameObject.tag == "SpeedBoost")
         {
-            screenInfoText.text = "Speed Boost! 10 Seconds";
-            scrennInfoAnim.SetTrigger("ScreenInfoTrigger");
+            ScreenInfoActivate("Speed Boost! 10 Seconds");
+            //screenInfoText.text = "Speed Boost! 10 Seconds";
+            //scrennInfoAnim.SetTrigger("ScreenInfoTrigger");
             Debug.Log("Speedboost");
             if(powerUp != null)
             {
@@ -282,13 +285,15 @@ public class FirstPersonController : MonoBehaviour
             AudioSource source = GameObject.FindGameObjectWithTag("PowerUp").GetComponent<AudioSource>();
             source.Play();
             Destroy(other.gameObject);
-            //puController.GenerateRandomSpawnLocation();
+            puController.GenerateRandomSpawnLocation();
             
         }
         if (other.gameObject.tag == "JumpBoost")
         {
-            screenInfoText.text = "Jump Boost! 10 Seconds";
-            scrennInfoAnim.SetTrigger("ScreenInfoTrigger");
+            ScreenInfoActivate("Jump Boost! 10 Seconds");
+
+            //screenInfoText.text = "Jump Boost! 10 Seconds";
+            //scrennInfoAnim.SetTrigger("ScreenInfoTrigger");
             Debug.Log("JumpBoost");
             if (powerUp != null)
             {
@@ -304,15 +309,17 @@ public class FirstPersonController : MonoBehaviour
             AudioSource source = GameObject.FindGameObjectWithTag("PowerUp").GetComponent<AudioSource>();
             source.Play();
             Destroy(other.gameObject);
-            //puController.GenerateRandomSpawnLocation();
+            puController.GenerateRandomSpawnLocation();
 
         }
         if (other.gameObject.tag == "TimeAdd")
         {
             AudioSource source = GameObject.FindGameObjectWithTag("PowerUp").GetComponent<AudioSource>();
             source.Play();
-            screenInfoText.text = "+5 Seconds!";
-            scrennInfoAnim.SetTrigger("ScreenInfoTrigger");
+            ScreenInfoActivate("+5 Seconds!");
+
+            //screenInfoText.text = "+5 Seconds!";
+            //scrennInfoAnim.SetTrigger("ScreenInfoTrigger");
             Debug.Log("TimeAdd");
             mbController.TimeResetPowerUp();
             Destroy(other.gameObject);
@@ -320,6 +327,8 @@ public class FirstPersonController : MonoBehaviour
         }
         if (other.gameObject.tag == "LaunchPad")
         {
+            ScreenInfoActivate("Boing!");
+
             AudioSource source = GameObject.FindGameObjectWithTag("JumpPad").GetComponent<AudioSource>();
             source.Play();
             Debug.Log("LaunchPad");

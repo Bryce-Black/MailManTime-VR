@@ -68,7 +68,7 @@ public class AmmoManagerSpawner : MonoBehaviour
         _BowAndArrowGameObject.transform.localRotation = holster.transform.localRotation;
         bowInHand = false;
 
-        uIManager.SetRayInteractorAlphaValue(0f, true);
+        //uIManager.SetRayInteractorAlphaValue(0f, true);
     }
 
     public void GrabBow()
@@ -83,7 +83,8 @@ public class AmmoManagerSpawner : MonoBehaviour
             gameStarted = true;
         }
         //set gradient alpha to 1 to activate laser pointer for bow
-        uIManager.SetRayInteractorAlphaValue(1f, true);
+        uIManager.DisableRayInteractors(false);
+        //uIManager.SetRayInteractorAlphaValue(1f, true);
         firstPersonController.BowHasBeenGrabbed();
     }
 

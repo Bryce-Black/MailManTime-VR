@@ -35,12 +35,14 @@ public class UIManager : MonoBehaviour
     {
         if (optionsPanel.activeSelf == true)
         {
-            SetRayInteractorAlphaValue(0f, false);
+            DisableRayInteractors(false);
+            //SetRayInteractorAlphaValue(0f, false);
             optionsPanel.SetActive(false);
             Time.timeScale = 1f;
         }
         else
         {
+            DisableRayInteractors(true);
             SetRayInteractorAlphaValue(1f, false);
             Time.timeScale = 0f;
             optionsPanel.SetActive(true);
@@ -49,6 +51,7 @@ public class UIManager : MonoBehaviour
     public void YouWin()
     {
         Time.timeScale = 0f;
+        DisableRayInteractors(true);
         SetRayInteractorAlphaValue(1f, false);
         gameOver = true;
         firstPersonController.enabled = false;
