@@ -316,7 +316,7 @@ public class MailBoxContoller : MonoBehaviour
         {
             GameStarted = true;
             StartTimerCountDownCoroutine();
-            music.Play();
+            //music.Play();
         }
         ToggleKeysAndMailUI(false);
         if (timerInitialTime > 0)

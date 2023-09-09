@@ -2728,6 +2728,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fpController: {fileID: 0}
+  bowRightHandDrawExample: {fileID: 0}
 --- !u!54 &200809045
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4745,6 +4746,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fpController: {fileID: 0}
+  bowRightHandDrawExample: {fileID: 0}
 --- !u!135 &413443339
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -17501,8 +17503,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 643.67, y: 50}
+  m_AnchoredPosition: {x: 0, y: -160.725}
+  m_SizeDelta: {x: 643.67, y: 521.114}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &756785331
 MonoBehaviour:
@@ -17524,25 +17526,24 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '1. Unlock a mailbox by shooting the correct color key at it.
+  m_text: '1. Start by grabbing the bow with your left hand by squeezing the grip.
 
 
     2.
-    Shoot corresponding mail into the mail box e.g. fire mail goes in the fire box.
+    While bow is selected, grab the correct color key to load the bow.
 
 
-    3.
-    Get 100 points as fast as possible without dying.
+    3. While
+    the bow is loaded and held on to, grab the string with your right hand by squeezing,
+    draw back the string, and release to fire.
 
 
-    4. Don''t forget to pick
-    up power ups!
+    4. You lose health by dropping
+    mail, or by not delivering on time.
 
 
-    Z button - Switch inventories [Key and Mail]
-
-    Scroll
-    Wheel - Switch item within inventory'
+    5. Score 25 points as fast as possible
+    without dying.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ab76ecaa13c042644b8f52ebfbe5e8b5, type: 2}
   m_sharedMaterial: {fileID: 2589137843876772202, guid: ab76ecaa13c042644b8f52ebfbe5e8b5, type: 2}
@@ -47356,6 +47357,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fpController: {fileID: 0}
+  bowRightHandDrawExample: {fileID: 0}
 --- !u!54 &1347051116
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -52479,6 +52481,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fpController: {fileID: 0}
+  bowRightHandDrawExample: {fileID: 0}
 --- !u!135 &1397036765
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -53187,6 +53190,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fpController: {fileID: 0}
+  bowRightHandDrawExample: {fileID: 0}
 --- !u!135 &1464527424
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -56188,19 +56192,17 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Design - Lopvinr
-
-    Programming - Bryce Black
-
-    Music - Laboratory
-    X
-
-    Art(Environment) - Noct
-
-    Art(UI & Assets) - Lopvinr
+  m_text: 'Programming - Bryce Black
 
 
+    Design - Bryce Black
 
+
+    Art(Environment)
+    - Noct
+
+
+    Main Menu UI - Lopvinr
 
 
 
@@ -56208,8 +56210,10 @@ MonoBehaviour:
 
 
 
-    Made
-    2023'
+
+
+
+    Made 2023'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ab76ecaa13c042644b8f52ebfbe5e8b5, type: 2}
   m_sharedMaterial: {fileID: 2589137843876772202, guid: ab76ecaa13c042644b8f52ebfbe5e8b5, type: 2}
@@ -56611,6 +56615,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fpController: {fileID: 0}
+  bowRightHandDrawExample: {fileID: 0}
 --- !u!54 &1730602293
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -67953,6 +67958,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fpController: {fileID: 0}
+  bowRightHandDrawExample: {fileID: 0}
 --- !u!54 &1960136778
 Rigidbody:
   m_ObjectHideFlags: 0
