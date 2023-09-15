@@ -88,7 +88,6 @@ public class ItemSelect : MonoBehaviour
 
         if (!_arrowNotched)
         {
-            fpController.UpdateMailName(this.gameObject.name);
             ammoManagerSpawner.SpawnSpecificItemInNotch(this.gameObject.name);
             Debug.Log("Grab mail name is " + this.gameObject.name);
             _arrowNotched = true;
@@ -105,7 +104,6 @@ public class ItemSelect : MonoBehaviour
             }
             else
             {
-                fpController.UpdateMailName(this.gameObject.name);
                 ammoManagerSpawner.ReplaceCurrentItemInNotch(this.gameObject.name);
                 _arrowNotched = true;
             }

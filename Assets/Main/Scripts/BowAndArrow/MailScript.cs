@@ -25,7 +25,6 @@ public class MailScript : MonoBehaviour
         MailSpeed = mailScript.mailSpeed;
         MailPoints = mailScript.mailPoints;
         firstPersonController = GameObject.FindGameObjectWithTag("Player").GetComponent<FirstPersonController>();
-        firstPersonController.ChangeMailInfo(MailName, MailSpeed);
         rb = GetComponent<Rigidbody>();
         Vector3 spinDirection = transform.up;
         rb.AddTorque(spinDirection * 10f);

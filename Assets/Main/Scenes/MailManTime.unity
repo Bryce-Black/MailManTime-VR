@@ -1923,8 +1923,6 @@ MonoBehaviour:
   - {fileID: 312176106}
   - {fileID: 1394016884}
   damageAnim: {fileID: 1272617203}
-  youWinPanel: {fileID: 1127888951}
-  totalTimeText: {fileID: 1357757550}
   optionsPanel: {fileID: 1301652920}
   gameIsPaused: 0
   reticle: {fileID: 0}
@@ -62597,9 +62595,83 @@ MonoBehaviour:
   m_GameObject: {fileID: 1942458168}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d1a0019737627a43bbe5b6585128168, type: 3}
+  m_Script: {fileID: 11500000, guid: 82309bdf8896a6744be2fd0a4c0a557d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rightTriggerPull:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Right Trigger Pull
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: cf8931af-0201-43ba-b91f-959ab0496fd5
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 7904272356298805229, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  rightSqueezePull:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Right Squeeze Pull
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: e255d93b-944a-4bc7-a97d-f029102b608c
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: -1758520528963094988, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  rightJoystickAxis:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Right Joystick Axis
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 40836bc2-e32f-4e4a-a632-a245604ed636
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: -6493913391331992944, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  leftTriggerPull:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Left Trigger Pull
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 8bc42b2f-0fb0-4d58-b29c-1d15377ebc9a
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: -4289430672226363583, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  leftSqueezePull:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Left Squeeze Pull
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 916a9ec2-c772-43bd-8900-9e1655ca4e45
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 6558622148059887818, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  leftJoystickAxis:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Left Joystick Axis
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 4e3c0171-de5b-434b-af28-713a60f768e8
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 6972639530819350904, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  leftHandAnimator: {fileID: 109434733075776135}
+  rightHandAnimator: {fileID: 5686134209102759582}
 --- !u!1 &1943649600
 GameObject:
   m_ObjectHideFlags: 0
@@ -106320,156 +106392,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d90ba6530d9bfda47abb4610956b2f44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numberTextKey: {fileID: 0}
-  numberTextMail: {fileID: 0}
-  reticle: {fileID: 0}
-  poofAnimation: {fileID: 0}
-  screenInfoText: {fileID: 304558917}
-  scrennInfoAnim: {fileID: 304558914}
-  shootLocation: {fileID: 0}
-  keySelectHighlight: {fileID: 0}
-  keyUIGameObjects:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  mailSelectHighlight: {fileID: 0}
-  mailUIGameObjects:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  playerCamera: {fileID: 0}
-  fov: 60
-  invertCamera: 0
-  cameraCanMove: 1
-  mouseSensitivity: 2
-  maxLookAngle: 60
-  maxLookAngleLower: 85
-  maxLookAngleHigher: 35
-  lockCursor: 1
-  crosshair: 1
-  crosshairImage: {fileID: 21300000, guid: be4ce60e2c9768c44b9b10b9c5258045, type: 3}
-  crosshairColor: {r: 1, g: 1, b: 1, a: 1}
-  xRotation: 0
-  yRotation: 0
-  zRotation: 90
-  enableZoom: 1
-  holdToZoom: 0
-  zoomKey: 343
-  zoomFOV: 30
-  zoomStepTime: 5
-  pauseButton: 336
+  gravityScale: 55
   playerCanMove: 1
   walkSpeed: 40
   maxVelocityChange: 5
+  sprintKey: 338
   enableSprint: 1
   unlimitedSprint: 1
-  sprintKey: 338
   sprintSpeed: 0
-  sprintDuration: 999
-  sprintCooldown: 0
-  sprintFOV: 70
-  sprintFOVStepTime: 10
-  useSprintBar: 1
-  hideBarWhenFull: 1
-  sprintBarBG: {fileID: 0}
-  sprintBar: {fileID: 0}
-  sprintBarWidthPercent: 0.3
-  sprintBarHeightPercent: 0.02
+  pauseButton: 336
+  screenInfoText: {fileID: 304558917}
+  scrennInfoAnim: {fileID: 304558914}
   enableJump: 1
   jumpKey: 330
   jumpPower: 30
   isGrounded: 0
   puController: {fileID: 1258760835}
-  enableCrouch: 1
-  holdToCrouch: 1
-  crouchKey: 306
-  crouchHeight: 0.75
-  speedReduction: 0.5
-  enableHeadBob: 0
-  joint: {fileID: 4918451714774874116}
-  bobSpeed: 10
-  bobAmount: {x: 0, y: 0, z: 0}
-  gravityScale: 55
-  raycastVector3x: 0
-  raycastVector3y: 0
-  raycastVector3z: 0
-  rayCastAnchorGameObject: {fileID: 1849822321}
-  rayCastCameraAnchorGameObject: {fileID: 1517702775}
-  rightTriggerPull:
-    m_UseReference: 1
-    m_Action:
-      m_Name: Right Trigger Pull
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: 37abf72d-897a-45bc-b9a3-ac7bbf334c79
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: 7904272356298805229, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-  rightSqueezePull:
-    m_UseReference: 1
-    m_Action:
-      m_Name: Right Squeeze Pull
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: 0f9c9d8a-8f98-4f23-83d9-3f5a85118fec
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: -1758520528963094988, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-  rightJoystickAxis:
-    m_UseReference: 1
-    m_Action:
-      m_Name: Right Joystick Axis
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: dbd418ae-6ee4-42e0-a0e2-32d9a7177e91
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: -6493913391331992944, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-  leftTriggerPull:
-    m_UseReference: 1
-    m_Action:
-      m_Name: Left Trigger Pull
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: 58fd92b6-2e60-45fb-8ec1-633224482053
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: -4289430672226363583, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-  leftSqueezePull:
-    m_UseReference: 1
-    m_Action:
-      m_Name: Left Squeeze Pull
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: 84494dc7-27ab-4635-bd0f-274cac23e7a1
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: 6558622148059887818, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-  leftJoystickAxis:
-    m_UseReference: 1
-    m_Action:
-      m_Name: Left Joystick Axis
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: e3aa6334-2bad-4c3e-9491-5ca795e73e62
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: 6972639530819350904, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-  leftHandAnimator: {fileID: 109434733075776135}
-  rightHandAnimator: {fileID: 5686134209102759582}
   uImanager: {fileID: 731839380}
 --- !u!23 &4918451716113458204
 MeshRenderer:
