@@ -26,15 +26,11 @@ public class MailBoxContoller : MonoBehaviour
     public TextMeshProUGUI timerInitialTimeText;
     private IEnumerator timerCountDownCoroutine;
     public TextMeshProUGUI powerUpScreenText;
-    private IEnumerator mailBoxTester;
+    
     private int MailBoxTesterIndex;
     public List<GameObject> playerHealthHearts;
     private int playerHealthIndex;
     public Animator damageAnim;
-    private float totalTime;
-    public GameObject youWinPanel;
-    public TextMeshProUGUI totalTimeText;
-    private bool gameOver = false;
     public GameObject optionsPanel;
     public bool gameIsPaused = false;
     public GameObject reticle;
@@ -44,8 +40,14 @@ public class MailBoxContoller : MonoBehaviour
     public List<GameObject> mailUI = new List<GameObject>();
     public UIManager uIManager;
     public BowUIHoverIndicator bowUIHoverIndicator;
+
+
     private int currentMailIndex;
     private Vector3 initialPositionOfHover;
+
+
+    //debugging coroutine to iterate through spawnpoints
+    //private IEnumerator mailBoxTester;
     private void Start()
     {
         firstPersonController = GameObject.FindGameObjectWithTag("Player").GetComponent<FirstPersonController>();

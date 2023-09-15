@@ -43,7 +43,6 @@ public class ItemSelect : MonoBehaviour
 
         if (!_arrowNotched)
         {
-            fpController.UpdateKeyName(this.gameObject.name);
             ammoManagerSpawner.SpawnSpecificItemInNotch(this.gameObject.name);
             
             Debug.Log("Grab key name is " + this.gameObject.name);
@@ -61,7 +60,6 @@ public class ItemSelect : MonoBehaviour
             }
             else
             {
-                fpController.UpdateKeyName(this.gameObject.name);
                 ammoManagerSpawner.ReplaceCurrentItemInNotch(this.gameObject.name);
                 _arrowNotched = true;
             }
