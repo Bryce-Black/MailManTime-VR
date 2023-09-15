@@ -20,11 +20,8 @@ using UnityEditor;
 
 public class FirstPersonController : MonoBehaviour
 {
-    public GameObject numberTextKey;
-    public GameObject numberTextMail;
 
-    public GameObject reticle;
-    public Animator poofAnimation;
+
     public TextMeshProUGUI screenInfoText;
     public Animator scrennInfoAnim;
     private Rigidbody rb;
@@ -42,8 +39,6 @@ public class FirstPersonController : MonoBehaviour
     #region UI
     public GameObject keySelectHighlight;
     public List<GameObject> keyUIGameObjects;
-    private Vector3 selectedKeyPositionV3;
-    private int keySelectIndexInt = 0;
 
     public GameObject mailSelectHighlight;
     public List<GameObject> mailUIGameObjects;
@@ -199,9 +194,6 @@ public class FirstPersonController : MonoBehaviour
     private bool gameIsPaused = false;
     private void Awake()
     {
-        //selectedKeyPositionV3 = keyUIGameObjects[0].transform.position;
-        //selectedMailPositionV3 = mailUIGameObjects[0].transform.position;
-        
         rb = GetComponent<Rigidbody>();
         playerCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         shootingPoint = playerCamera.transform;
@@ -221,8 +213,6 @@ public class FirstPersonController : MonoBehaviour
 
     void Start()
     {
-
-        
         mbController = GameObject.FindGameObjectWithTag("MailBoxController").GetComponent<MailBoxContoller>();
         #region Sprint Bar
         sprintBarCG = GetComponentInChildren<CanvasGroup>();
@@ -264,11 +254,9 @@ public class FirstPersonController : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "SpeedBoost")
+        if (other.gameObject.CompareTag("SpeedBoost"))
         {
             ScreenInfoActivate("Speed Boost! 10 Seconds");
-            //screenInfoText.text = "Speed Boost! 10 Seconds";
-            //scrennInfoAnim.SetTrigger("ScreenInfoTrigger");
             Debug.Log("Speedboost");
             if(powerUp != null)
             {
@@ -288,12 +276,9 @@ public class FirstPersonController : MonoBehaviour
             puController.GenerateRandomSpawnLocation();
             
         }
-        if (other.gameObject.tag == "JumpBoost")
+        if (other.gameObject.CompareTag("JumpBoost"))
         {
             ScreenInfoActivate("Jump Boost! 10 Seconds");
-
-            //screenInfoText.text = "Jump Boost! 10 Seconds";
-            //scrennInfoAnim.SetTrigger("ScreenInfoTrigger");
             Debug.Log("JumpBoost");
             if (powerUp != null)
             {
@@ -312,20 +297,17 @@ public class FirstPersonController : MonoBehaviour
             puController.GenerateRandomSpawnLocation();
 
         }
-        if (other.gameObject.tag == "TimeAdd")
+        if (other.gameObject.CompareTag("TimeAdd"))
         {
             AudioSource source = GameObject.FindGameObjectWithTag("PowerUp").GetComponent<AudioSource>();
             source.Play();
             ScreenInfoActivate("+5 Seconds!");
-
-            //screenInfoText.text = "+5 Seconds!";
-            //scrennInfoAnim.SetTrigger("ScreenInfoTrigger");
             Debug.Log("TimeAdd");
             mbController.TimeResetPowerUp();
             Destroy(other.gameObject);
             puController.GenerateRandomSpawnLocation();
         }
-        if (other.gameObject.tag == "LaunchPad")
+        if (other.gameObject.CompareTag("LaunchPad"))
         {
             ScreenInfoActivate("Boing!");
 
@@ -361,55 +343,8 @@ public class FirstPersonController : MonoBehaviour
 
     }
 
-    float camRotation;
 
-    private void Shoot()
-    {
-        
-        if(!mbController.gameIsPaused)
-        {
-            poofAnimation.SetTrigger("Shoot");
-            if (keyInHand)
-            {
-
-                // Instantiate the projectile at the camera's position and rotation
-                GameObject projectile = Instantiate(Resources.Load<GameObject>(keyNameInResourceFolder), shootLocation.transform.position, shootLocation.transform.rotation);
-                projectile.transform.Rotate(0, 90, 0, Space.World);
-                // Get the direction the player is pointing
-                Vector3 direction = shootingPoint.forward;
-                
-                // Add force to the projectile if it has a Rigidbody component
-                Rigidbody projectileRigidbody = projectile.GetComponent<Rigidbody>();
-                if (projectileRigidbody != null)
-                {
-                    //Debug.Log("direction is x:" + direction.x + "y:" + direction.y + "z: " + direction.z);
-                    projectileRigidbody.AddForce(direction * 5500f);
-                    projectileRigidbody.AddForce(Vector3.up * 100f);
-                }
-            }
-            else
-            {
-                // Instantiate the projectile at the camera's position and rotation
-                currentVector3 = shootLocation.transform.position;
-                GameObject projectile = Instantiate(Resources.Load<GameObject>(letterNameInResourcesFolder), shootLocation.transform.position, shootLocation.transform.rotation);
-                projectile.transform.position = currentVector3;
-                projectile.transform.Rotate(xRotation, yRotation, zRotation, Space.World);
-                // Get the direction the player is pointing
-                Vector3 direction = shootingPoint.forward;
-                // Add force to the projectile if it has a Rigidbody component
-                Rigidbody projectileRigidbody = projectile.GetComponent<Rigidbody>();
-                if (projectileRigidbody != null)
-                {
-                    //Debug.Log("direction is x:" + direction.x + "y:" + direction.y + "z: " + direction.z);
-                    projectileRigidbody.AddForce(direction * letterSpeed);
-                    projectileRigidbody.AddForce(Vector3.up * 100f);
-                    float turn = Input.GetAxis("Horizontal");
-                    projectileRigidbody.AddTorque(5000f * turn * projectileRigidbody.transform.right);
-                }
-            }
-        }
-        
-    }
+    
     public void UpdateKeyName(string keyName)
     {
         keyNameInResourceFolder = keyName;
@@ -478,19 +413,6 @@ public class FirstPersonController : MonoBehaviour
 
             }
         }
-        if (Input.GetButtonDown("BButton"))
-        {
-
-        }
-        if (Input.GetButtonDown("XButton"))
-        {
-
-        }
-        if (Input.GetButtonDown("YButton"))
-        {
-
-        }
-
         if(Input.GetKeyUp(pauseButton))
         {
             Debug.Log("pauseButtonPressed");
@@ -506,223 +428,18 @@ public class FirstPersonController : MonoBehaviour
         }
 
 
-        #region Camera Zoom
-        //if (leftTriggerValue > 0)
-        //{
-        //    Debug.Log("Zoomy bam boomy");
-        //    //reticle.SetActive(true);
-        //    playerCamera.fieldOfView = 40;
-        //    //if (Input.GetKey(zoomKey))
-        //    //{
-                
 
-        //    //}
-        //    //else
-        //    //{
-        //    //    //reticle.SetActive(false);
-        //    //}
-        //}
-        //else
-        //{
-        //    playerCamera.fieldOfView = 60;
 
-        //}
+       
 
 
 
 
-        #endregion
-
-        #region Sprint
-
-        if (enableSprint)
-        {
-            if (isSprinting)
-            {
-                isZoomed = false;
-                //playerCamera.fieldOfView = Mathf.Lerp(playerCamera.fieldOfView, sprintFOV, sprintFOVStepTime * Time.deltaTime);
-
-                // Drain sprint remaining while sprinting
-                if (!unlimitedSprint)
-                {
-                    sprintRemaining -= 1 * Time.deltaTime;
-                    if (sprintRemaining <= 0)
-                    {
-                        isSprinting = false;
-                        isSprintCooldown = true;
-                    }
-                }
-            }
-            else
-            {
-                //Regain sprint while not sprinting
-                sprintRemaining = Mathf.Clamp(sprintRemaining += 1 * Time.deltaTime, 0, sprintDuration);
-            }
-
-            //Handles sprint cooldown
-            //When sprint remaining == 0 stops sprint ability until hitting cooldown
-            if (isSprintCooldown)
-            {
-                sprintCooldown -= 1 * Time.deltaTime;
-                if (sprintCooldown <= 0)
-                {
-                    isSprintCooldown = false;
-                }
-            }
-            else
-            {
-                sprintCooldown = sprintCooldownReset;
-            }
-
-            // Handles sprintBar 
-            if (useSprintBar && !unlimitedSprint)
-            {
-                float sprintRemainingPercent = sprintRemaining / sprintDuration;
-                sprintBar.transform.localScale = new Vector3(sprintRemainingPercent, 1f, 1f);
-            }
-        }
-
-        #endregion
-
-        #region Jump
-
-        // Gets input and calls jump method
-        
-
-        #endregion
-
-        #region Crouch
-
-        //if (enableCrouch)
-        //{
-        //    if(Input.GetKeyDown(crouchKey) && !holdToCrouch)
-        //    {
-        //        Crouch();
-        //    }
-
-        //    if(Input.GetKeyDown(crouchKey) && holdToCrouch)
-        //    {
-        //        isCrouched = false;
-        //        Crouch();
-        //    }
-        //    else if(Input.GetKeyUp(crouchKey) && holdToCrouch)
-        //    {
-        //        isCrouched = true;
-        //        Crouch();
-        //    }
-        //}
-
-        #endregion
 
     }
 
     void FixedUpdate()
     {
-        //Vector3 tempPlayerRayVector3 = rayCastAnchorGameObject.transform.position;
-        //Vector3 tempCameraRayVector3 = rayCastCameraAnchorGameObject.transform.position;
-
-        //tempPlayerRayVector3.x += raycastVector3x;
-        //tempPlayerRayVector3.y += raycastVector3y;
-        //tempPlayerRayVector3.z += raycastVector3z;
-
-        //Ray playerAnchoredBackRay = new Ray(tempPlayerRayVector3, -rayCastAnchorGameObject.transform.forward);
-        //Debug.DrawRay(playerAnchoredBackRay.origin, playerAnchoredBackRay.direction * 5f, Color.red);
-        //RaycastHit hit3;
-
-        //Ray cameraAnchoredBackRay = new Ray(tempCameraRayVector3, -rayCastCameraAnchorGameObject.transform.forward);
-        //Debug.DrawRay(cameraAnchoredBackRay.origin, cameraAnchoredBackRay.direction * 5f, Color.red);
-        //RaycastHit cameraAnchorHit;
-
-
-        //// Perform the raycast
-        //if ((Physics.Raycast(playerAnchoredBackRay, out hit3, 5f)))
-        //{
-        //    // Check if the ray hit a collider with a tag]
-
-        //    newPosition = playerCamera.transform.localPosition;
-        //    if (newPosition.z < 3f)
-        //    {
-        //        newPosition.z += .1f;
-        //        playerCamera.transform.localPosition = newPosition;
-        //    }
-        //    //if (!clippingControl)
-        //    //{
-        //    //    newPosition = playerCamera.transform.localPosition;
-        //    //    newPosition.z = 3f;
-        //    //    playerCamera.transform.localPosition = newPosition;
-        //    //    clippingControl = true;
-        //    //    Debug.Log("newPosition" + newPosition);
-        //    //}
-        //}
-        //else
-        //{
-        //    if ((Physics.Raycast(playerAnchoredBackRay, out hit3, 9f)))
-        //    {
-        //    }
-        //    else
-        //    {
-        //        newPosition = playerCamera.transform.localPosition;
-        //        if (newPosition.z > -3f)
-        //        {
-        //            newPosition.z -= .1f;
-        //            playerCamera.transform.localPosition = newPosition;
-        //        }
-        //        //if (clippingControl)
-        //        //{
-        //        //    newPosition = playerCamera.transform.localPosition;
-        //        //    newPosition.z = -3f;
-        //        //    playerCamera.transform.localPosition = newPosition;
-        //        //    clippingControl = false;
-        //        //}
-        //    }
-
-        //}
-
-
-        //if ((Physics.Raycast(cameraAnchoredBackRay, out cameraAnchorHit, 5f)))
-        //{
-        //    // Check if the ray hit a collider with a tag]
-
-        //    newPosition = playerCamera.transform.localPosition;
-        //    if (newPosition.z < 3f)
-        //    {
-        //        newPosition.z += .1f;
-        //        playerCamera.transform.localPosition = newPosition;
-        //    }
-        //    //if (!clippingControl)
-        //    //{
-        //    //    newPosition = playerCamera.transform.localPosition;
-        //    //    newPosition.z = 3f;
-        //    //    playerCamera.transform.localPosition = newPosition;
-        //    //    clippingControl = true;
-        //    //    Debug.Log("newPosition" + newPosition);
-        //    //}
-        //}
-        //else
-        //{
-        //    if ((Physics.Raycast(cameraAnchoredBackRay, out cameraAnchorHit, 9f)))
-        //    {
-        //    }
-        //    else
-        //    {
-        //        newPosition = playerCamera.transform.localPosition;
-        //        if (newPosition.z > -3f)
-        //        {
-        //            newPosition.z -= .1f;
-        //            playerCamera.transform.localPosition = newPosition;
-        //        }
-        //        //if (clippingControl)
-        //        //{
-        //        //    newPosition = playerCamera.transform.localPosition;
-        //        //    newPosition.z = -3f;
-        //        //    playerCamera.transform.localPosition = newPosition;
-        //        //    clippingControl = false;
-        //        //}
-        //    }
-
-        //}
-
-        //GRAVITY
         rb.AddForce(Vector3.down * gravityScale);
         #region Movement
         if (playerCanMove && bowGrabbed)
@@ -732,16 +449,7 @@ public class FirstPersonController : MonoBehaviour
             //Debug.Log("target velocity?:" + targetVelocity);
             if (targetVelocity.x == 0 && targetVelocity.z == 0)
             {
-
                 CheckGround();
-                //if (isGrounded)
-                //{
-                //    rb.velocity = Vector3.zero;
-                //    rb.Sleep();
-                //}
-
-
-                //do nothing
             }
             else
             {
@@ -783,7 +491,6 @@ public class FirstPersonController : MonoBehaviour
 
                         if (hideBarWhenFull && !unlimitedSprint)
                         {
-                            //sprintBarCG.alpha += 5 * Time.deltaTime;
                         }
                     }
 
@@ -812,7 +519,6 @@ public class FirstPersonController : MonoBehaviour
                 }
             }
             // Checks if player is walking and isGrounded
-            // Will allow head bob
             
         }
 
@@ -841,7 +547,6 @@ public class FirstPersonController : MonoBehaviour
         {
             isGrounded = false;
         }
-        //Debug.Log("Is grounded?: " + isGrounded);
     }
 
     public void BowHasBeenGrabbed()
@@ -850,67 +555,7 @@ public class FirstPersonController : MonoBehaviour
     }
     private void Jump()
     {
-        // Adds force to the player rigidbody to jump
-
         rb.AddForce(0f, jumpPower, 0f, ForceMode.Impulse);
         isGrounded = false;
-        //Debug.Log("jumped");
-        // When crouched and using toggle system, will uncrouch for a jump
-        //if (isCrouched && !holdToCrouch)
-        //{
-        //    Crouch();
-        //}
     }
-
-    //private void Crouch()
-    //{
-    //// Stands player up to full height
-    //// Brings walkSpeed back up to original speed
-    //if (isCrouched)
-    //{
-    //    transform.localScale = new Vector3(originalScale.x, originalScale.y, originalScale.z);
-    //    walkSpeed /= speedReduction;
-
-    //    isCrouched = false;
-    //}
-    //// Crouches player down to set height
-    //// Reduces walkSpeed
-    //else
-    //{
-    //    transform.localScale = new Vector3(originalScale.x, crouchHeight, originalScale.z);
-    //    walkSpeed *= speedReduction;
-
-    //    isCrouched = true;
-    //}
-    //}
-
-    //    private void HeadBob()
-    //    {
-    //        if(isWalking)
-    //        {
-    //            // Calculates HeadBob speed during sprint
-    //            if(isSprinting)
-    //            {
-    //                timer += Time.deltaTime * (bobSpeed + sprintSpeed);
-    //            }
-    //            // Calculates HeadBob speed during crouched movement
-    //            else if (isCrouched)
-    //            {
-    //                timer += Time.deltaTime * (bobSpeed * speedReduction);
-    //            }
-    //            // Calculates HeadBob speed during walking
-    //            else
-    //            {
-    //                timer += Time.deltaTime * bobSpeed;
-    //            }
-    //            // Applies HeadBob movement
-    //            joint.localPosition = new Vector3(jointOriginalPos.x + Mathf.Sin(timer) * bobAmount.x, jointOriginalPos.y + Mathf.Sin(timer) * bobAmount.y, jointOriginalPos.z + Mathf.Sin(timer) * bobAmount.z);
-    //        }
-    //        else
-    //        {
-    //            // Resets when play stops moving
-    //            timer = 0;
-    //            joint.localPosition = new Vector3(Mathf.Lerp(joint.localPosition.x, jointOriginalPos.x, Time.deltaTime * bobSpeed), Mathf.Lerp(joint.localPosition.y, jointOriginalPos.y, Time.deltaTime * bobSpeed), Mathf.Lerp(joint.localPosition.z, jointOriginalPos.z, Time.deltaTime * bobSpeed));
-    //        }
-    //    }
 }
